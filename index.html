@@ -1,1449 +1,1057 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kit de Lanzamiento: Trabajo Remoto (De Grano en Grano)</title>
-    <!-- Premium Google Fonts Pairing -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS Play CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Custom Tailwind Configuration to match theme guidelines -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-                        display: ['Space Grotesk', 'system-ui', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'ui-monospace', 'monospace']
-                    }
-                }
-            }
-        }
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>De Grano En Grano · Kit de Lanzamiento Remoto</title>
+<meta name="description" content="Guía pragmática y gratuita para conseguir empleo remoto internacional desde Latinoamérica: CV anti-robots (ATS), LinkedIn imán, portafolio MVP y cartas que sí se leen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* De Grano En Grano · espresso + oro + verde crecimiento */
+  --bone:#F0E8D6;
+  --paper:#FBF5E7;
+  --paper-2:#F2E9D3;
+  --ink:#1E150C;
+  --ink-soft:#4a3c2c;
+  --ink-faint:#7a6a55;
+  --forest:#175A3A;       /* verde crecimiento (acción) */
+  --forest-2:#1d7049;
+  --lime:#E6B84A;         /* oro · "grano de oro" (highlight) */
+  --lime-deep:#C2912E;    /* oro profundo */
+  --clay:#B5482A;         /* terracota (rechazo/alerta) */
+  --clay-soft:#d4744f;
+  --line:rgba(30,21,12,.14);
+  --line-strong:rgba(30,21,12,.3);
+  --shadow:0 1px 0 rgba(30,21,12,.04), 0 18px 40px -24px rgba(30,21,12,.5);
+  --shadow-lg:0 30px 70px -34px rgba(23,90,58,.5);
+  --r:18px;
+  --maxw:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:96px;-webkit-text-size-adjust:100%}
+body{
+  font-family:'Hanken Grotesk',system-ui,sans-serif;
+  background:var(--bone);
+  color:var(--ink);
+  line-height:1.6;
+  font-size:17px;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+/* subtle paper texture */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+  background-image:radial-gradient(rgba(21,36,27,.035) 1px,transparent 1px);
+  background-size:22px 22px;
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px;position:relative;z-index:1}
+h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;line-height:1.04;letter-spacing:-.01em;font-weight:600}
+a{color:inherit}
+.mono{font-family:'JetBrains Mono',monospace}
+.tag{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:8px;color:var(--forest);font-weight:500;
+}
+.tag::before{content:"";width:22px;height:1.5px;background:var(--forest);display:inline-block}
 
-    <!-- Lucide Icons CDN -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+/* ---------- progress + nav ---------- */
+#progressbar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--forest),var(--lime-deep));z-index:120;transition:width .15s ease}
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(239,233,218,.82);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);transition:transform .35s ease, box-shadow .3s;
+}
+nav.hidden{transform:translateY(-100%)}
+.navin{max-width:var(--maxw);margin:0 auto;padding:13px 26px;display:flex;align-items:center;gap:22px}
+.brand{font-family:'Fraunces',serif;font-weight:700;font-size:18px;letter-spacing:-.02em;white-space:nowrap;display:flex;align-items:center;gap:11px;text-decoration:none}
+.brand .logo{width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid var(--lime);box-shadow:0 2px 10px rgba(30,21,12,.25);background:var(--paper);flex:0 0 auto}
+.brand .wm{display:flex;flex-direction:column;line-height:1}
+.brand .wm small{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;color:var(--lime-deep);font-weight:500;margin-top:3px}
+.brand .dot{color:var(--lime-deep)}
+@media(max-width:520px){.brand .wm{display:none}}
+.navlinks{display:flex;gap:4px;margin-left:auto;align-items:center}
+.navlinks a{
+  font-size:13.5px;font-weight:600;text-decoration:none;color:var(--ink-soft);
+  padding:7px 13px;border-radius:999px;transition:.2s;white-space:nowrap;
+}
+.navlinks a:hover{color:var(--ink);background:rgba(15,77,47,.08)}
+.navlinks a.active{color:var(--paper);background:var(--forest)}
+.navtoggle{display:none}
+@media(max-width:920px){
+  .navlinks{display:none}
+  .navlinks.open{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--bone);padding:14px;border-bottom:1px solid var(--line);gap:6px}
+  .navtoggle{display:block;margin-left:auto;background:var(--forest);color:var(--paper);border:none;border-radius:10px;padding:9px 13px;font-weight:700;cursor:pointer;font-family:inherit}
+}
 
-    <!-- Base aesthetic styles & animations -->
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        .page-fade-in {
-            animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 9999px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
-    </style>
+/* ---------- hero ---------- */
+header.hero{padding:150px 0 70px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:9px;background:var(--paper);border:1px solid var(--line);
+  border-radius:999px;padding:7px 15px;font-size:12.5px;font-weight:600;margin-bottom:26px;
+}
+.eyebrow b{color:var(--clay)}
+h1.title{font-size:clamp(40px,7vw,90px);font-weight:900;line-height:.95;letter-spacing:-.03em}
+h1.title em{font-style:italic;font-weight:500;color:var(--forest)}
+.hl{position:relative;white-space:nowrap}
+.hl::after{content:"";position:absolute;left:-2%;right:-2%;bottom:.08em;height:.36em;background:var(--lime);z-index:-1;transform:skewX(-8deg)}
+.lead{font-size:19.5px;color:var(--ink-soft);max-width:560px;margin:30px 0 34px;font-weight:500}
+.lead b{color:var(--ink);font-weight:700}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.btn{
+  font-family:inherit;font-weight:700;font-size:16px;text-decoration:none;cursor:pointer;border:none;
+  padding:16px 26px;border-radius:13px;display:inline-flex;align-items:center;gap:10px;transition:.22s;
+}
+.btn-primary{background:var(--forest);color:var(--paper);box-shadow:var(--shadow)}
+.btn-primary:hover{background:var(--ink);transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line-strong)}
+.btn-ghost:hover{border-color:var(--forest);color:var(--forest);transform:translateY(-2px)}
+.btn .arr{transition:transform .22s}
+.btn:hover .arr{transform:translateX(4px)}
+
+/* hero stat card */
+.statcard{
+  background:var(--ink);color:var(--paper);border-radius:24px;padding:34px 32px;position:relative;overflow:hidden;
+  box-shadow:var(--shadow-lg);
+}
+.statcard::before{content:"";position:absolute;top:-40%;right:-30%;width:70%;height:120%;background:radial-gradient(circle,rgba(199,242,78,.22),transparent 65%)}
+.statcard .big{font-family:'Fraunces',serif;font-size:84px;font-weight:900;line-height:1;color:var(--lime);letter-spacing:-.04em}
+.statcard .big span{font-size:42px;vertical-align:super}
+.statcard p{color:rgba(250,246,235,.78);font-size:15.5px;margin-top:8px;font-weight:500}
+.statcard .divider{height:1px;background:rgba(250,246,235,.16);margin:24px 0}
+.minirow{display:flex;justify-content:space-between;font-size:13px;font-family:'JetBrains Mono',monospace;color:rgba(250,246,235,.65);margin:7px 0}
+.minirow b{color:var(--lime)}
+@media(max-width:880px){.hero-grid{grid-template-columns:1fr;gap:36px}header.hero{padding:128px 0 50px}}
+
+/* ---------- roadmap strip ---------- */
+.roadmap{background:var(--ink);color:var(--paper);padding:54px 0;margin-top:30px}
+.roadmap .wrap{display:flex;align-items:stretch;gap:0;flex-wrap:wrap}
+.rm-head{flex:0 0 230px;padding-right:30px}
+.rm-head .tag{color:var(--lime)}
+.rm-head .tag::before{background:var(--lime)}
+.rm-head h3{color:var(--paper);font-size:25px;margin-top:12px;font-weight:600}
+.rm-steps{flex:1;display:grid;grid-template-columns:repeat(5,1fr);gap:0;min-width:300px}
+.rm-step{padding:6px 16px;border-left:1px solid rgba(250,246,235,.14);position:relative}
+.rm-step:first-child{border-left:none;padding-left:0}
+.rm-num{font-family:'Fraunces',serif;font-size:30px;font-weight:900;color:var(--lime)}
+.rm-step h4{color:var(--paper);font-size:15px;margin:6px 0 3px;font-weight:600}
+.rm-step p{font-size:12.5px;color:rgba(250,246,235,.6);font-family:'JetBrains Mono',monospace}
+@media(max-width:760px){.rm-steps{grid-template-columns:1fr 1fr}.rm-step{border-left:none;border-top:1px solid rgba(250,246,235,.12);padding:14px 0}.rm-head{flex-basis:100%;margin-bottom:20px}}
+
+/* ---------- pillars overview ---------- */
+section{padding:80px 0;position:relative}
+.sec-head{max-width:680px;margin-bottom:46px}
+.sec-head h2{font-size:clamp(32px,5vw,52px);font-weight:700;margin:14px 0 16px;letter-spacing:-.025em}
+.sec-head p{font-size:18px;color:var(--ink-soft);font-weight:500}
+.pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.pcard{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:30px;position:relative;
+  overflow:hidden;text-decoration:none;display:block;transition:.28s;
+}
+.pcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--forest)}
+.pcard .pnum{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;color:var(--clay);font-weight:700}
+.pcard h3{font-size:25px;margin:10px 0 12px;font-weight:600}
+.pcard p{color:var(--ink-soft);font-size:15.5px}
+.pcard .go{margin-top:18px;font-weight:700;font-size:14px;color:var(--forest);display:inline-flex;align-items:center;gap:7px}
+.pcard .go .arr{transition:transform .22s}
+.pcard:hover .go .arr{transform:translateX(5px)}
+.pcard .ghostnum{position:absolute;right:-10px;bottom:-34px;font-family:'Fraunces',serif;font-size:150px;font-weight:900;color:rgba(15,77,47,.05);pointer-events:none}
+@media(max-width:720px){.pillars{grid-template-columns:1fr}}
+
+/* ---------- generic section card ---------- */
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
+.callout{border-left:4px solid var(--forest);background:var(--paper-2);padding:18px 22px;border-radius:0 12px 12px 0;margin:24px 0}
+.callout.warn{border-color:var(--clay)}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--forest);display:block;margin-bottom:6px}
+.callout.warn .lbl{color:var(--clay)}
+
+/* ---------- ATS simulator ---------- */
+.tool-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;background:var(--lime);color:var(--ink);padding:5px 11px;border-radius:7px;font-weight:700;margin-bottom:14px}
+.ats-wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:14px}
+.ats-toggle{display:inline-flex;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:5px;gap:5px;margin-bottom:22px}
+.ats-toggle button{font-family:inherit;font-weight:700;font-size:14px;border:none;background:transparent;color:var(--ink-soft);padding:9px 18px;border-radius:9px;cursor:pointer;transition:.2s}
+.ats-toggle button.on[data-v="bad"]{background:var(--clay);color:#fff}
+.ats-toggle button.on[data-v="good"]{background:var(--forest);color:var(--paper)}
+.cv-pane{display:none}
+.cv-pane.show{display:block;animation:fade .4s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.cv-doc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;min-height:340px;box-shadow:var(--shadow)}
+.score{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding:14px 16px;border-radius:12px;font-weight:700}
+.score.bad{background:rgba(201,81,46,.12);color:var(--clay)}
+.score.good{background:rgba(15,77,47,.1);color:var(--forest)}
+.score .pct{font-family:'Fraunces',serif;font-size:38px;font-weight:900;line-height:1}
+.score small{font-weight:600;font-size:13px;display:block;color:var(--ink-soft)}
+/* bad cv blocks */
+.bad-cv{display:grid;grid-template-columns:1fr 1.3fr;gap:12px}
+.bad-block{border:2px dashed var(--clay-soft);border-radius:9px;padding:10px 8px;cursor:pointer;transition:.18s;font-size:12.5px;color:var(--clay);text-align:center;font-weight:600;background:rgba(181,72,42,.05);line-height:1.25;overflow-wrap:break-word;word-break:break-word;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:52px}
+.bad-block:hover{background:rgba(181,72,42,.14);transform:scale(1.02)}
+.bad-block.photo{min-height:94px}
+.bad-skill{margin-top:8px}
+.bad-bar{height:9px;width:100%;border-radius:6px;background:#e9e2d4;overflow:hidden}
+.bad-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--clay-soft),var(--clay))}
+.diag{margin-top:14px;background:var(--ink);color:var(--paper);border-radius:11px;padding:14px 16px;font-size:13.5px;min-height:60px;transition:.2s}
+.diag .mono{color:var(--lime);font-size:11px;letter-spacing:.1em;display:block;margin-bottom:5px}
+/* good cv */
+.good-cv h5{font-family:'Fraunces',serif;font-size:17px;font-weight:700;border-bottom:2px solid var(--ink);padding-bottom:6px}
+.good-cv .contact{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);margin:8px 0 16px}
+.good-cv h6{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--forest);font-weight:800;margin:14px 0 6px;font-family:'Hanken Grotesk',sans-serif}
+.good-cv .role{font-weight:700;font-size:14px}
+.good-cv .role span{float:right;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-faint);font-weight:500}
+.good-cv ul{list-style:none;margin:8px 0}
+.good-cv li{font-size:13.5px;padding-left:18px;position:relative;margin-bottom:6px;color:var(--ink-soft)}
+.good-cv li::before{content:"▸";position:absolute;left:0;color:var(--forest);font-weight:700}
+.good-cv li b{color:var(--ink)}
+.good-cv .skills{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink-soft);line-height:1.9}
+@media(max-width:760px){.ats-wrap{grid-template-columns:1fr}}
+
+/* formula */
+.formula{background:var(--ink);color:var(--paper);border-radius:16px;padding:28px;margin-top:26px;position:relative;overflow:hidden}
+.formula::after{content:"</>";position:absolute;right:20px;top:14px;font-family:'JetBrains Mono',monospace;font-size:80px;color:rgba(199,242,78,.07);font-weight:700}
+.formula .f-line{font-family:'Fraunces',serif;font-size:clamp(22px,3.5vw,32px);font-weight:700}
+.formula .f-line .x{color:var(--lime)}
+.formula .f-line .y{color:var(--clay-soft)}
+.formula .f-line .z{color:#7fc7ff}
+.formula .ex{margin-top:14px;color:rgba(250,246,235,.82);font-size:15px}
+.formula .ex b{color:#fff}
+
+/* reframe rows */
+.reframe{display:grid;gap:12px;margin-top:24px}
+.rf-row{display:grid;grid-template-columns:1fr 44px 1fr;gap:0;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:13px;overflow:hidden}
+.rf-old{padding:16px 18px;background:var(--paper-2)}
+.rf-old small,.rf-new small{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:3px;font-weight:700}
+.rf-old small{color:var(--ink-faint)}
+.rf-old b{font-size:15px;color:var(--ink-soft)}
+.rf-arrow{display:flex;align-items:center;justify-content:center;background:var(--forest);color:var(--lime);height:100%;font-size:20px;font-weight:700}
+.rf-new{padding:16px 18px}
+.rf-new small{color:var(--forest)}
+.rf-new b{font-size:15px;color:var(--ink)}
+.rf-hack{grid-column:1/-1;padding:12px 18px;border-top:1px dashed var(--line);font-size:13.5px;color:var(--ink-soft);background:rgba(230,184,74,.1)}
+.rf-hack b{color:var(--forest)}
+@media(max-width:640px){.rf-row{grid-template-columns:1fr}.rf-arrow{width:40px;height:40px;border-radius:50%;justify-self:center;align-self:center;margin:-8px 0;z-index:2;box-shadow:0 0 0 5px var(--paper);transform:rotate(90deg);font-size:18px}}
+
+/* ---------- LinkedIn anatomy ---------- */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.tabs button{font-family:inherit;font-weight:700;font-size:13.5px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink-soft);padding:10px 16px;border-radius:11px;cursor:pointer;transition:.2s}
+.tabs button:hover{border-color:var(--forest)}
+.tabs button.on{background:var(--forest);color:var(--paper);border-color:var(--forest)}
+.tabpane{display:none;animation:fade .35s ease}
+.tabpane.show{display:block}
+.li-mock{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+.li-banner{height:84px;background:linear-gradient(115deg,var(--ink),var(--forest));display:flex;align-items:center;justify-content:flex-end;padding:0 22px}
+.li-banner span{font-family:'JetBrains Mono',monospace;color:var(--lime);font-size:11px;letter-spacing:.1em;text-align:right;font-weight:500}
+.li-body{padding:18px 22px 22px;position:relative}
+.li-pfp{width:74px;height:74px;border-radius:50%;background:var(--paper-2);border:4px solid #fff;margin-top:-50px;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:900;font-size:26px;color:var(--forest)}
+.li-name{font-family:'Fraunces',serif;font-size:21px;font-weight:700;margin-top:8px}
+.li-name .deg{font-size:11px;color:var(--ink-faint);font-weight:500;vertical-align:super}
+.li-headline{font-size:14.5px;color:var(--ink-soft);font-weight:600;margin-top:3px}
+.li-loc{font-size:12px;color:var(--ink-faint);margin-top:5px;font-family:'JetBrains Mono',monospace}
+.li-about{font-size:14px;color:var(--ink-soft);margin-top:14px;border-top:1px solid var(--line);padding-top:14px;font-style:italic}
+.li-feat{margin-top:14px;border:1px solid var(--line);border-radius:11px;padding:14px;display:flex;gap:14px;align-items:center}
+.li-feat .thumb{flex:0 0 80px;height:54px;border-radius:8px;background:linear-gradient(135deg,var(--forest),var(--lime-deep));display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700}
+.li-feat b{font-size:13.5px}
+.li-feat p{font-size:12px;color:var(--ink-faint)}
+.li-hack{margin-top:0}
+.li-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+@media(max-width:760px){.li-grid{grid-template-columns:1fr}}
+
+/* networking compare */
+.netcompare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}
+.net{border-radius:14px;padding:22px;border:1px solid var(--line)}
+.net.bad{background:rgba(201,81,46,.06);border-color:rgba(201,81,46,.3)}
+.net.good{background:rgba(15,77,47,.05);border-color:rgba(15,77,47,.3)}
+.net .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;display:flex;align-items:center;gap:7px}
+.net.bad .lbl{color:var(--clay)}
+.net.good .lbl{color:var(--forest)}
+.net .msg{margin:14px 0;font-size:14.5px;font-style:italic;line-height:1.55;border-left:3px solid;padding-left:14px}
+.net.bad .msg{border-color:var(--clay-soft)}
+.net.good .msg{border-color:var(--forest-2)}
+.net p{font-size:13.5px;color:var(--ink-soft)}
+@media(max-width:640px){.netcompare{grid-template-columns:1fr}}
+
+/* ---------- portfolio explorer ---------- */
+.req-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:24px 0}
+.req{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:18px}
+.req .n{font-family:'Fraunces',serif;font-size:30px;font-weight:900;color:var(--lime-deep);line-height:1}
+.req p{font-size:13.5px;color:var(--ink-soft);margin-top:8px}
+@media(max-width:760px){.req-grid{grid-template-columns:1fr 1fr}}
+.notion{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+.notion-bar{background:var(--paper-2);padding:10px 16px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-faint);border-bottom:1px solid var(--line)}
+.notion-body{padding:22px}
+.notion-body h4{font-size:23px;font-weight:700;margin-bottom:16px}
+.case-step{margin-bottom:16px}
+.case-step .st{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--forest);font-weight:700;text-transform:uppercase}
+.case-step p{font-size:14.5px;color:var(--ink-soft);margin-top:3px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.chip{font-family:'JetBrains Mono',monospace;font-size:11.5px;background:var(--paper-2);border:1px solid var(--line);border-radius:7px;padding:4px 10px;font-weight:600}
+.case-result{background:rgba(199,242,78,.16);border:1px solid var(--lime-deep);border-radius:11px;padding:14px 16px;margin-top:6px;font-size:14.5px;font-weight:600}
+.case-result b{color:var(--forest)}
+
+/* ---------- cover letter generator ---------- */
+.gen-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:22px;align-items:start}
+.gen-form label{display:block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--forest);margin:0 0 7px}
+.gen-form .field{margin-bottom:18px}
+.gen-form select,.gen-form input{
+  width:100%;font-family:inherit;font-size:15px;padding:13px 14px;border:1.5px solid var(--line);border-radius:11px;
+  background:var(--paper);color:var(--ink);font-weight:500;transition:.2s;
+}
+.gen-form select:focus,.gen-form input:focus{outline:none;border-color:var(--forest);box-shadow:0 0 0 3px rgba(15,77,47,.12)}
+.gen-out{background:var(--ink);border-radius:16px;padding:24px;color:var(--paper);min-height:330px;position:relative;display:flex;flex-direction:column}
+.gen-out .ghead{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(250,246,235,.16);padding-bottom:12px;margin-bottom:14px}
+.gen-out .ghead .mono{color:var(--lime);font-size:11px;letter-spacing:.14em}
+.copybtn{font-family:inherit;font-size:12.5px;font-weight:700;background:var(--lime);color:var(--ink);border:none;border-radius:9px;padding:8px 14px;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:6px}
+.copybtn:hover{background:#fff}
+.copybtn.done{background:var(--forest-2);color:var(--lime)}
+#letterText{font-size:14.5px;line-height:1.7;color:rgba(250,246,235,.92);white-space:pre-wrap;flex:1}
+#letterText .ph{color:rgba(250,246,235,.42);font-style:italic}
+@media(max-width:760px){.gen-grid{grid-template-columns:1fr}}
+
+/* ---------- checklist ---------- */
+.checkwrap{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.check{
+  display:flex;gap:14px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);
+  border-radius:14px;padding:18px;cursor:pointer;transition:.2s;user-select:none;
+}
+.check:hover{border-color:var(--forest)}
+.check.on{background:rgba(15,77,47,.06);border-color:var(--forest)}
+.check .box{flex:0 0 24px;height:24px;border:2px solid var(--line-strong);border-radius:7px;display:flex;align-items:center;justify-content:center;transition:.2s;margin-top:2px}
+.check.on .box{background:var(--forest);border-color:var(--forest)}
+.check .box svg{width:14px;height:14px;stroke:var(--lime);stroke-width:3.4;fill:none;opacity:0;transition:.2s}
+.check.on .box svg{opacity:1}
+.check h4{font-size:15.5px;font-weight:700;margin-bottom:3px;font-family:'Hanken Grotesk',sans-serif}
+.check p{font-size:13.5px;color:var(--ink-soft)}
+@media(max-width:640px){.checkwrap{grid-template-columns:1fr}}
+.done-card{
+  margin-top:24px;background:var(--ink);color:var(--paper);border-radius:18px;padding:30px;text-align:center;
+  opacity:.4;transition:.5s;position:relative;overflow:hidden;
+}
+.done-card.unlocked{opacity:1}
+.done-card.unlocked::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(199,242,78,.18),transparent 60%)}
+.done-card h3{color:var(--lime);font-size:28px;font-weight:700;position:relative}
+.done-card p{color:rgba(250,246,235,.82);max-width:620px;margin:12px auto 0;position:relative}
+.progress-ring{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink-faint);margin-bottom:14px;font-weight:600}
+.progress-ring b{color:var(--forest);font-size:15px}
+
+/* tools links */
+.toolgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+.toollink{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px;text-decoration:none;display:block;transition:.24s}
+.toollink:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--forest)}
+.toollink b{font-family:'Fraunces',serif;font-size:19px;display:flex;align-items:center;justify-content:space-between}
+.toollink b .arr{color:var(--forest)}
+.toollink p{font-size:13.5px;color:var(--ink-soft);margin-top:8px}
+@media(max-width:760px){.toolgrid{grid-template-columns:1fr}}
+
+/* footer */
+footer{background:var(--ink);color:var(--paper);padding:60px 0 40px;margin-top:40px}
+footer .ftop{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;border-bottom:1px solid rgba(250,246,235,.14);padding-bottom:28px}
+footer h3{font-size:30px;font-weight:700;color:var(--paper)}
+footer h3 .dot{color:var(--lime)}
+footer p{color:rgba(250,246,235,.62);font-size:14px;max-width:380px;margin-top:8px}
+footer .share{display:flex;gap:10px;flex-wrap:wrap}
+footer .share button{font-family:inherit;font-weight:700;font-size:13.5px;background:transparent;border:1.5px solid rgba(250,246,235,.25);color:var(--paper);border-radius:10px;padding:11px 16px;cursor:pointer;transition:.2s;display:flex;gap:8px;align-items:center}
+footer .share button:hover{background:var(--lime);color:var(--ink);border-color:var(--lime)}
+footer .fmeta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:rgba(250,246,235,.5);letter-spacing:.05em}
+
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+.section-rule{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(20px,3vw,28px);color:var(--forest);text-align:center;max-width:760px;margin:0 auto;font-weight:500;padding:10px 0}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120px);background:var(--ink);color:var(--lime);font-weight:700;font-size:14px;padding:14px 22px;border-radius:12px;z-index:200;transition:transform .35s cubic-bezier(.2,.8,.2,1);box-shadow:var(--shadow-lg)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ===== AJUSTES MÓVIL ===== */
+@media(max-width:600px){
+  body{font-size:16px}
+  .wrap{padding:0 16px}
+  .navin{padding:11px 16px;gap:12px}
+  .brand{font-size:16px;gap:9px}
+  .brand .logo{width:34px;height:34px}
+  section{padding:54px 0}
+  header.hero{padding:116px 0 38px}
+  .hero-grid{gap:30px}
+  h1.title{font-size:clamp(33px,8.7vw,52px)}
+  .eyebrow{flex-wrap:wrap;font-size:12px;margin-bottom:20px}
+  .lead{font-size:16.5px;margin:20px 0 24px}
+  .cta-row{width:100%}
+  .btn{width:100%;justify-content:center;padding:15px 20px;font-size:15.5px}
+  .statcard{padding:26px 22px;border-radius:20px}
+  .statcard .big{font-size:62px}
+  .statcard .big span{font-size:30px}
+  .roadmap{padding:38px 0}
+  .sec-head{margin-bottom:30px}
+  .sec-head h2{font-size:clamp(27px,7.6vw,40px)}
+  .sec-head p{font-size:16px}
+  .card{padding:20px}
+  .pcard{padding:23px}
+  .pcard h3{font-size:22px}
+  .pcard .ghostnum{font-size:108px;bottom:-20px;right:-4px}
+  .section-rule{font-size:18.5px;padding:4px 0}
+  .formula{padding:22px}
+  .formula::after{font-size:56px;right:14px}
+  .reframe .rf-hack{padding:11px 16px}
+  .mono{overflow-wrap:anywhere}
+  .good-cv .contact{overflow-wrap:anywhere;font-size:10.5px}
+  .li-headline{font-size:13.5px}
+  .gen-out{padding:18px;min-height:auto}
+  .diag{padding:13px 15px}
+  .tabs{gap:6px}
+  .tabs button{font-size:12.5px;padding:9px 12px}
+  .ats-toggle button{padding:9px 14px;font-size:13px}
+  .req-grid{gap:10px}
+  .toollink{padding:18px}
+  footer{padding:48px 0 34px}
+  footer .ftop{flex-direction:column;align-items:flex-start}
+  footer h3{font-size:25px}
+  footer .share{width:100%}
+  footer .share button{flex:1 1 auto;justify-content:center}
+  footer .fmeta{flex-direction:column;gap:6px}
+  .toast{left:16px;right:16px;transform:translateY(140px)}
+  .toast.show{transform:translateY(0)}
+}
+@media(max-width:380px){
+  h1.title{font-size:31px}
+  .statcard .big{font-size:54px}
+  .req-grid{grid-template-columns:1fr}
+}
+</style>
 </head>
-<body class="min-h-screen bg-[#f8fafc] flex flex-col selection:bg-indigo-100 selection:text-indigo-950 text-slate-800">
+<body>
+<div id="progressbar"></div>
 
-    <!-- Top Banner (Persuación de Lead Magnet) -->
-    <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-950 text-white border-b border-slate-800/80 py-3 px-4 text-center text-xs md:text-sm font-medium relative overflow-hidden shadow-sm z-50">
-        <span class="inline-flex bg-amber-400 text-slate-950 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider mr-2 animate-pulse">🎁 Recurso Gratuito para la Comunidad de Empleo Remoto de LATAM</span>
-        
+<nav id="nav">
+  <div class="navin">
+    <a href="#top" class="brand">
+      <img class="logo" src="logo.png" data-fallback="https://yt3.googleusercontent.com/Kuyu6tqAseg1Q1wWJmyk14Xr2D1tl4XECCwGvuhvjhet4BLJS6T6Il3wxuSlKC0X6KhClV3kjA=s240-c-k-c0x00ffffff-no-rj" alt="De Grano En Grano" onerror="if(this.dataset.fallback&&this.src.indexOf('logo.png')>-1){this.src=this.dataset.fallback}else{this.style.display='none'}">
+      <span class="wm">De Grano En Grano<small>KIT REMOTO</small></span>
+    </a>
+    <button class="navtoggle" id="navtoggle">Menú</button>
+    <div class="navlinks" id="navlinks">
+      <a href="#pilar-1">01 · CV ATS</a>
+      <a href="#pilar-2">02 · LinkedIn</a>
+      <a href="#pilar-3">03 · Portafolio</a>
+      <a href="#pilar-4">04 · Carta</a>
+      <a href="#checklist">✓ Evaluación</a>
     </div>
+  </div>
+</nav>
 
-    <!-- Main Premium Navbar -->
-    <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200/60 shadow-[0_2px_15px_rgba(0,0,0,0.02)]">
-        <div class="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="bg-indigo-600 text-white p-2.5 rounded-2xl shadow-[0_4px_12px_rgba(79,70,229,0.3)] flex items-center justify-center hover:scale-105 transition-all">
-                    <i data-lucide="compass" class="w-5 h-5"></i>
-                </div>
-                <div>
-                    <h1 class="font-display font-black text-sm md:text-base tracking-tight text-slate-900 leading-none">
-                        Kit de Lanzamiento <span class="text-indigo-600 italic">Remoto</span>
-                    </h1>
-                    <p class="text-[9px] text-slate-400 mt-1 font-mono tracking-wider font-bold">MENTORÍA DE EMPLEABILIDAD</p>
-                </div>
-            </div>
-
-            <!-- Header Nav pills (Desktop) -->
-            <nav class="hidden lg:flex items-center gap-1 bg-slate-100/90 p-1 rounded-2xl border border-slate-200/50">
-                <button onclick="changeTab('inicio')" id="hdr-nav-inicio" class="px-4 py-2 rounded-xl text-xs font-bold tracking-wide transition-all duration-200">
-                    Introducción
-                </button>
-                <button onclick="changeTab('pilar1')" id="hdr-nav-pilar1" class="px-4 py-2 rounded-xl text-xs font-bold tracking-wide transition-all duration-200">
-                    1. CV ATS
-                </button>
-                <button onclick="changeTab('pilar2')" id="hdr-nav-pilar2" class="px-4 py-2 rounded-xl text-xs font-bold tracking-wide transition-all duration-200">
-                    2. LinkedIn Vendedor
-                </button>
-                <button onclick="changeTab('pilar3')" id="hdr-nav-pilar3" class="px-4 py-2 rounded-xl text-xs font-bold tracking-wide transition-all duration-200">
-                    3. Portafolio MVP
-                </button>
-                <button onclick="changeTab('pilar4')" id="hdr-nav-pilar4" class="px-4 py-2 rounded-xl text-xs font-bold tracking-wide transition-all duration-200">
-                    4. Cover Letter
-                </button>
-                <button onclick="changeTab('checklist')" id="hdr-nav-checklist" class="px-4 py-2 rounded-xl text-xs font-bold tracking-wide transition-all duration-200">
-                    Evaluación Final
-                </button>
-            </nav>
-
-            <div class="flex items-center gap-2">
-                <button onclick="copyRouteLink()" class="bg-slate-900 hover:bg-slate-950 text-white px-4.5 py-2.5 rounded-xl text-xs font-bold transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center gap-2 shadow-[0_4px_12px_rgba(15,23,42,0.15)] cursor-pointer">
-                    <span id="share-icon-placeholder"><i data-lucide="copy" class="w-3.5 h-3.5 text-slate-300"></i></span>
-                    <span id="share-btn-text">Compartir Guía</span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content Grid -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 md:px-8 py-8 flex flex-col lg:flex-row gap-8">
-        
-        <!-- Left Side: Navigation Map & Progress (Sticky aside Desk / Flow control Mobile) -->
-        <aside class="lg:w-76 shrink-0 flex flex-col gap-6">
-            <div class="bg-white rounded-3xl border border-slate-200/80 p-6 shadow-[0_4px_25px_rgba(0,0,0,0.02)] lg:sticky lg:top-28">
-                <h3 class="font-display font-extrabold text-xs text-slate-900 uppercase tracking-widest border-b border-slate-100 pb-3 mb-4">
-                    Mapa de Ruta de la Guía
-                </h3>
-                
-                <!-- Steps column -->
-                <div class="flex flex-col gap-2">
-                    <button onclick="changeTab('inicio')" id="map-btn-inicio" class="w-full flex items-center gap-3 px-4.5 py-3 rounded-2xl transition-all duration-200 text-left text-xs font-bold border hover:scale-[1.01] active:scale-[0.99]">
-                        <div id="map-badge-inicio" class="w-7 h-7 rounded-lg flex items-center justify-center text-[10px] font-bold">
-                            0
-                        </div>
-                        <div>
-                            <p class="leading-tight">El Problema Real</p>
-                            <span class="text-[10px] text-slate-400 font-normal">Introducción</span>
-                        </div>
-                    </button>
-
-                    <button onclick="changeTab('pilar1')" id="map-btn-pilar1" class="w-full flex items-center gap-3 px-4.5 py-3 rounded-2xl transition-all duration-200 text-left text-xs font-bold border hover:scale-[1.01] active:scale-[0.99]">
-                        <div id="map-badge-pilar1" class="w-7 h-7 rounded-lg flex items-center justify-center text-[10px] font-bold">
-                            1
-                        </div>
-                        <div>
-                            <p class="leading-tight">CV Anti-Robots (ATS)</p>
-                            <span class="text-[10px] text-slate-400 font-normal">Fórmula & Filtros</span>
-                        </div>
-                    </button>
-
-                    <button onclick="changeTab('pilar2')" id="map-btn-pilar2" class="w-full flex items-center gap-3 px-4.5 py-3 rounded-2xl transition-all duration-200 text-left text-xs font-bold border hover:scale-[1.01] active:scale-[0.99]">
-                        <div id="map-badge-pilar2" class="w-7 h-7 rounded-lg flex items-center justify-center text-[10px] font-bold">
-                            2
-                        </div>
-                        <div>
-                            <p class="leading-tight">LinkedIn Vendedor</p>
-                            <span class="text-[10px] text-slate-400 font-normal">SSI & Headline</span>
-                        </div>
-                    </button>
-
-                    <button onclick="changeTab('pilar3')" id="map-btn-pilar3" class="w-full flex items-center gap-3 px-4.5 py-3 rounded-2xl transition-all duration-200 text-left text-xs font-bold border hover:scale-[1.01] active:scale-[0.99]">
-                        <div id="map-badge-pilar3" class="w-7 h-7 rounded-lg flex items-center justify-center text-[10px] font-bold">
-                            3
-                        </div>
-                        <div>
-                            <p class="leading-tight">Portafolio 'MVP'</p>
-                            <span class="text-[10px] text-slate-400 font-normal">A base de Evidencias</span>
-                        </div>
-                    </button>
-
-                    <button onclick="changeTab('pilar4')" id="map-btn-pilar4" class="w-full flex items-center gap-3 px-4.5 py-3 rounded-2xl transition-all duration-200 text-left text-xs font-bold border hover:scale-[1.01] active:scale-[0.99]">
-                        <div id="map-badge-pilar4" class="w-7 h-7 rounded-lg flex items-center justify-center text-[10px] font-bold">
-                            4
-                        </div>
-                        <div>
-                            <p class="leading-tight">Carta de Presentación</p>
-                            <span class="text-[10px] text-slate-400 font-normal">Simulador Outreach</span>
-                        </div>
-                    </button>
-
-                    <button onclick="changeTab('checklist')" id="map-btn-checklist" class="w-full flex items-center gap-3 px-4.5 py-3 rounded-2xl transition-all duration-200 text-left text-xs font-bold border hover:scale-[1.01] active:scale-[0.99]">
-                        <div id="map-badge-checklist" class="w-7 h-7 rounded-lg flex items-center justify-center text-[10px] font-bold">
-                            ✓
-                        </div>
-                        <div>
-                            <p class="leading-tight">Evaluación Rápida</p>
-                            <span class="text-[10px] text-slate-400 font-normal">Checklist 5 Puntos</span>
-                        </div>
-                    </button>
-                </div>
-
-                <!-- Live progress tracking box -->
-                <div class="mt-6 bg-slate-50/85 border border-slate-200/60 rounded-2xl p-4">
-                    <div class="flex justify-between items-center mb-1.5">
-                        <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider font-mono">Tu Progreso</span>
-                        <span id="tracker-percent-text" class="text-xs font-mono font-black text-indigo-600">0%</span>
-                    </div>
-                    <div class="w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
-                        <div id="tracker-progress-bar" class="bg-indigo-600 h-full transition-all duration-300" style="width: 0%"></div>
-                    </div>
-                    <p class="text-[10px] text-slate-400 mt-2 leading-tight">
-                        Completa y marca el Checklist al final de la guía para evaluar tu preparación real de postulación.
-                    </p>
-                </div>
-            </div>
-        </aside>
-
-        <!-- Right Side: Content Screen -->
-        <section class="flex-grow flex flex-col gap-6 md:max-w-3xl lg:max-w-none">
-            
-            <div class="bg-white rounded-3xl border border-slate-200 p-6 md:p-10 shadow-sm relative overflow-hidden">
-                <!-- Outer decoration -->
-                <div class="absolute top-0 right-0 h-32 w-32 bg-indigo-50/50 rounded-bl-full pointer-events-none -z-10"></div>
-                <div class="absolute top-0 right-0 h-16 w-16 bg-amber-50/50 rounded-bl-full pointer-events-none -z-10"></div>
-
-                <!-- CONTENT TAB: INICIO -->
-                <div id="content-inicio" class="content-tab page-fade-in flex flex-col gap-6">
-                    <div class="flex flex-col gap-3">
-                        <span class="text-xs font-extrabold text-indigo-600 uppercase tracking-widest leading-relaxed">
-                            CÓMO HACKEAR EL MERCADO INTERNACIONAL, VENCER A LOS ALGORITMOS Y DESTACAR EN LATINOAMÉRICA SIN EXPERIENCIA PREVIA
-                        </span>
-                        <h2 class="font-display font-black text-3xl md:text-5xl text-slate-900 tracking-tight leading-none uppercase">
-                            HACKEA EL MERCADO <span class="text-indigo-600 italic">REMOTO</span>
-                        </h2>
-                    </div>
-
-                    <p class="text-slate-700 text-sm md:text-base leading-relaxed font-normal">
-                        <strong>Enviar 100 postulaciones genéricas en LinkedIn y recibir 100 correos automatizados de rechazo es frustrante. Pero aquí está la cruda verdad: el 75% de los CVs son descartados por un software antes de que un ojo humano los lea.</strong>
-                    </p>
-
-                    <p class="text-slate-600 text-sm md:text-base leading-relaxed">
-                        En el mercado remoto internacional, aplicar 'a lo loco' es una garantía de invisibilidad. Para destacar en Latinoamérica —especialmente si estás cambiando de carrera, tienes más de 40 años, o sientes que tu inglés aún es básico— necesitas dejar de ser un postulante pasivo y convertirte en un imán digital de alta conversión. No necesitas ser perfecto, necesitas ser estratégico.
-                    </p>
-
-                    <div class="p-5 bg-amber-50/60 border-l-4 border-amber-500 rounded-r-2xl border-y border-r border-amber-200/50">
-                        <h4 class="font-display font-black text-xs uppercase tracking-wider text-amber-900 flex items-center gap-2 mb-1.5">
-                            <i data-lucide="sparkles" class="w-4 h-4 text-amber-500"></i> Nota del Mentor
-                        </h4>
-                        <p class="text-xs text-amber-950 leading-relaxed">
-                            Esta guía NO habla de teorías académicas aburridas o procesos de bootcamps estructurados. Es un acelerador pragmático y honesto. Te convertimos en alguien visible para el mercado global.
-                        </p>
-                    </div>
-
-                    <!-- 4 Pillars Grid -->
-                    <h3 class="font-display font-extrabold text-xs text-slate-400 uppercase tracking-widest mt-6">
-                        Los 4 Pilares Inquebrantables del Empleo Remoto
-                    </h3>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <button onclick="changeTab('pilar1')" class="p-6 rounded-3xl border border-slate-200 bg-white transition-all duration-300 text-left hover:border-indigo-550 hover:shadow-[0_12px_28px_rgba(79,70,229,0.05)] hover:scale-[1.01] active:scale-[0.99] group flex flex-col justify-between cursor-pointer">
-                            <div>
-                                <span class="inline-block px-2.5 py-0.5 rounded-lg bg-indigo-50 text-indigo-700 text-[10px] font-extrabold uppercase tracking-wider mb-3">Pilar 1</span>
-                                <h4 class="font-display font-black text-base text-slate-900 group-hover:text-indigo-600 transition-colors mb-2">El CV Anti-Robots (ATS)</h4>
-                                <p class="text-xs text-slate-500 leading-relaxed mb-4">Cómo estructurar una hoja de vida limpia de gráficos y optimizada con palabras clave para que el software te califique en el top 10%.</p>
-                            </div>
-                            <span class="text-[11px] font-black text-indigo-600 inline-flex items-center gap-1 group-hover:translate-x-1.5 transition-transform uppercase tracking-wider">
-                                Hackear este pilar <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                            </span>
-                        </button>
-
-                        <button onclick="changeTab('pilar2')" class="p-6 rounded-3xl border border-slate-200 bg-white transition-all duration-300 text-left hover:border-indigo-550 hover:shadow-[0_12px_28px_rgba(79,70,229,0.05)] hover:scale-[1.01] active:scale-[0.99] group flex flex-col justify-between cursor-pointer">
-                            <div>
-                                <span class="inline-block px-2.5 py-0.5 rounded-lg bg-indigo-50 text-indigo-700 text-[10px] font-extrabold uppercase tracking-wider mb-3">Pilar 2</span>
-                                <h4 class="font-display font-black text-base text-slate-900 group-hover:text-indigo-600 transition-colors mb-2">LinkedIn: Tu Vendedor 24/7</h4>
-                                <p class="text-xs text-slate-500 leading-relaxed mb-4">Usa el algoritmo a tu favor, optimiza el SSI (Social Selling Index) y genera conexiones sin mendigar trabajo.</p>
-                            </div>
-                            <span class="text-[11px] font-black text-indigo-600 inline-flex items-center gap-1 group-hover:translate-x-1.5 transition-transform uppercase tracking-wider">
-                                Hackear este pilar <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                            </span>
-                        </button>
-
-                        <button onclick="changeTab('pilar3')" class="p-6 rounded-3xl border border-slate-200 bg-white transition-all duration-300 text-left hover:border-indigo-550 hover:shadow-[0_12px_28px_rgba(79,70,229,0.05)] hover:scale-[1.01] active:scale-[0.99] group flex flex-col justify-between cursor-pointer">
-                            <div>
-                                <span class="inline-block px-2.5 py-0.5 rounded-lg bg-indigo-50 text-indigo-700 text-[10px] font-extrabold uppercase tracking-wider mb-3">Pilar 3</span>
-                                <h4 class="font-display font-black text-base text-slate-900 group-hover:text-indigo-600 transition-colors mb-2">El Portafolio Mínimo Viable</h4>
-                                <p class="text-xs text-slate-500 leading-relaxed mb-4">Por qué mostrar vale más que decir. Construye una vitrina de evidencias prácticas sin gastar semanas diseñando webs complejas.</p>
-                            </div>
-                            <span class="text-[11px] font-black text-indigo-600 inline-flex items-center gap-1 group-hover:translate-x-1.5 transition-transform uppercase tracking-wider">
-                                Hackear este pilar <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                            </span>
-                        </button>
-
-                        <button onclick="changeTab('pilar4')" class="p-6 rounded-3xl border border-slate-200 bg-white transition-all duration-300 text-left hover:border-indigo-550 hover:shadow-[0_12px_28px_rgba(79,70,229,0.05)] hover:scale-[1.01] active:scale-[0.99] group flex flex-col justify-between cursor-pointer">
-                            <div>
-                                <span class="inline-block px-2.5 py-0.5 rounded-lg bg-indigo-50 text-indigo-700 text-[10px] font-extrabold uppercase tracking-wider mb-3">Pilar 4</span>
-                                <h4 class="font-display font-black text-base text-slate-900 group-hover:text-indigo-600 transition-colors mb-2">La Carta de Presentación Persuasiva</h4>
-                                <p class="text-xs text-slate-500 leading-relaxed mb-4">El arma secreta para switchers de carrera y mayores de 40. Tres párrafos mágicos que explican tu valor transferible.</p>
-                            </div>
-                            <span class="text-[11px] font-black text-indigo-600 inline-flex items-center gap-1 group-hover:translate-x-1.5 transition-transform uppercase tracking-wider">
-                                Hackear este pilar <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                            </span>
-                        </button>
-                    </div>
-
-                    <!-- Flow Button to next section -->
-                    <div class="mt-6 flex justify-end">
-                        <button onclick="changeTab('pilar1')" class="bg-indigo-600 hover:bg-indigo-700 cursor-pointer text-white px-6 py-3.5 rounded-2xl text-xs font-bold transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center gap-2 shadow-lg shadow-indigo-100 font-display">
-                            <span>Comenzar con el Pilar 1: El CV</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- CONTENT TAB: PILAR 1 -->
-                <div id="content-pilar1" class="content-tab page-fade-in flex flex-col gap-6 hidden">
-                    <div class="flex flex-col gap-2">
-                        <span class="text-xs font-bold text-indigo-600 uppercase tracking-widest font-display">No es tu talento lo que falla, es el formato de tu hoja de vida.</span>
-                        <h2 class="font-display font-black text-2xl md:text-3xl text-slate-900 tracking-tight leading-tight">
-                            Pilar 1: El CV a Prueba de Robots (Sistemas ATS)
-                        </h2>
-                    </div>
-
-                    <div class="flex flex-col gap-2">
-                        <h3 class="font-display font-extrabold text-base text-slate-900">¿Qué es realmente un ATS?</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            Un ATS (Applicant Tracking System) es un sistema inteligente de filtrado que usan el 90% de las empresas remotas. Escanea tu CV en busca de palabras clave específicas, calcula un porcentaje de coincidencia con la oferta y descarta automáticamente a los que no pasan la nota.
-                        </p>
-                    </div>
-
-                    <div class="flex flex-col gap-2">
-                        <h3 class="font-display font-extrabold text-base text-slate-900">La regla de oro: Diseño 'Desnudo'</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            Para que un ATS pueda leer tu experiencia, debes eliminar radicalmente: fotos (a menos que postules a actuación/modelaje), columnas múltiples, tablas cruzadas, barras de porcentaje de habilidades, estrellas de nivel, iconos o logotipos decorativos. Estos elementos actúan como 'ruido' que bloquea el escaneo del robot.
-                        </p>
-                    </div>
-
-                    
-
-                    <!-- INTERACTIVE ATS SIMULATOR -->
-                    <div class="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-sm my-4">
-                        <div class="bg-slate-900 text-white p-4 flex flex-col md:flex-row md:items-center justify-between gap-3">
-                            <div>
-                                <h4 class="font-display font-extrabold text-xs uppercase tracking-widest text-amber-400">Herramienta Interactiva</h4>
-                                <h3 class="text-sm font-bold">Simulador de Filtros ATS vs Reclutador</h3>
-                            </div>
-                            
-                            <!-- Sub Tabs switcher -->
-                            <div class="flex bg-slate-800 p-0.5 rounded-lg border border-slate-700">
-                                <button onclick="toggleATSPreview('rejected')" id="btn-ats-rejected" class="px-3 py-1 rounded-md text-xs font-semibold flex items-center gap-1.5 transition-all bg-rose-600 text-white shadow-sm">
-                                    <i data-lucide="thumbs-down" class="w-3.5 h-3.5"></i>
-                                    CV Rechazado
-                                </button>
-                                <button onclick="toggleATSPreview('approved')" id="btn-ats-approved" class="px-3 py-1 rounded-md text-xs font-semibold flex items-center gap-1.5 transition-all text-slate-400 hover:text-white">
-                                    <i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i>
-                                    CV Aprobado
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Panel: Rejected view content representation -->
-                        <div id="panel-ats-view" class="p-5 bg-slate-50 min-h-80 flex flex-col gap-4">
-                            <!-- Rejected state -->
-                            <div id="ats-rejected-content" class="flex flex-col gap-4">
-                                <div class="flex items-center gap-2 text-rose-700 bg-rose-50 p-3 rounded-xl border border-rose-100 text-xs shadow-sm">
-                                    <i data-lucide="alert-circle" class="w-4 h-4 shrink-0"></i>
-                                    <span><strong>Puntuación de compatibilidad ATS: 15%</strong> (Bloqueado por elementos gráficos y diseño complejo). El robot no puede extraer los textos principales.</span>
-                                </div>
-
-                                <div class="p-5 bg-white rounded-xl border border-rose-200 shadow-sm flex flex-col gap-4 relative">
-                                    <div class="flex flex-col md:flex-row gap-4 border-b border-slate-100 pb-4">
-                                        <div onclick="selectAtsFeature('foto')" class="w-20 h-20 rounded-full bg-slate-200 border-2 border-rose-450 flex items-center justify-center cursor-pointer hover:scale-105 transition-all shrink-0">
-                                            <span class="text-[10px] text-rose-700 font-bold text-center">Foto Retrato</span>
-                                        </div>
-                                        <div class="flex-grow flex flex-col justify-between">
-                                            <div class="h-4 bg-slate-200 rounded w-1/2 mb-1"></div>
-                                            <div class="h-3 bg-indigo-200 rounded w-1/3 mb-4"></div>
-                                            <div class="flex gap-2">
-                                                <span class="text-[9px] bg-slate-100 px-2 py-0.5 rounded text-slate-500 border border-slate-200">Personal Info</span>
-                                                <span class="text-[9px] bg-slate-100 px-2 py-0.5 rounded text-slate-500 border border-slate-200">Email</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div onclick="selectAtsFeature('columnas')" class="border border-dashed border-rose-300 p-3 rounded-lg cursor-pointer bg-rose-50/10 hover:bg-rose-50/30 transition-all">
-                                            <span class="text-[10px] uppercase font-bold text-rose-750">Columna de la izquierda</span>
-                                            <div class="h-2 bg-slate-200 rounded w-full mt-2"></div>
-                                            <div class="h-2 bg-slate-200 rounded w-4/5 mt-1"></div>
-                                            <div class="h-2 bg-slate-200 rounded w-3/4 mt-1"></div>
-                                        </div>
-                                        <div onclick="selectAtsFeature('graficos')" class="border border-dashed border-rose-300 p-3 rounded-lg cursor-pointer bg-rose-50/10 hover:bg-rose-50/30 transition-all flex flex-col gap-2">
-                                            <span class="text-[10px] uppercase font-bold text-rose-750">Gráfico de Habilidades</span>
-                                            <div class="flex items-center gap-1">
-                                                <div class="w-full bg-slate-200 h-2 rounded overflow-hidden">
-                                                    <div class="bg-rose-500 h-full w-4/5"></div>
-                                                </div>
-                                                <span class="text-[9px] text-slate-400">80%</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <p class="text-[11px] text-indigo-600 text-center font-bold italic mt-2 flex items-center justify-center gap-1">
-                                        <i data-lucide="info" class="w-3.5 h-3.5"></i> Haz clic en los bloques con bordes punteados para auditar por qué fallan ante el robot.
-                                    </p>
-                                </div>
-
-                                <!-- Dynamic feature alert notes panel -->
-                                <div id="ats-feature-notes" class="p-4 bg-rose-50 border-l-4 border-rose-600 rounded-r-lg text-xs text-rose-950">
-                                    Haz clic en cualquiera de los bloques interactivos arriba (Foto, Columnas, Gráficos) para diagnosticar el rechazo de compatibilidad de los robots de reclutamiento.
-                                </div>
-                            </div>
-
-                            <!-- Approved state (hidden initially) -->
-                            <div id="ats-approved-content" class="flex flex-col gap-4 hidden">
-                                <div class="flex items-center gap-2 text-emerald-700 bg-emerald-50 p-3 rounded-xl border border-emerald-100 text-xs shadow-sm">
-                                    <i data-lucide="check-circle-2" class="w-4 h-4 shrink-0"></i>
-                                    <span><strong>Puntuación de compatibilidad ATS: 98%</strong> (Estructura limpia, fuente clásica, palabras clave indexadas). Lectura exitosa.</span>
-                                </div>
-
-                                <div class="p-6 bg-white rounded-xl border border-emerald-250 shadow-sm flex flex-col gap-5 text-left">
-                                    <div class="border-b border-slate-100 pb-3">
-                                        <h5 class="font-display font-extrabold text-sm text-slate-900">JUAN PÉREZ | Analista de Procesos y Datos</h5>
-                                        <p class="text-[10px] font-mono text-slate-500 mt-1">LinkedIn: linkedin.com/in/juan-perez-data | Correo: juan.perez@email.com | Teléfono: +52 55-12-34-56-78</p>
-                                    </div>
-
-                                    <div>
-                                        <h6 class="text-[11px] font-extrabold uppercase tracking-wider text-indigo-700 border-b border-indigo-50 pb-1 mb-2">EXPERIENCIA LABORAL</h6>
-                                        <div class="flex flex-col gap-2">
-                                            <div class="flex justify-between items-center text-xs">
-                                                <span class="font-bold text-slate-800">Asesor de Procesos e Inventario — Distribuidora Local</span>
-                                                <span class="text-slate-400 font-mono text-[10px]">06/2021 – Actualidad</span>
-                                            </div>
-                                            <ul class="list-disc pl-4 text-xs text-slate-600 flex flex-col gap-1">
-                                                <li><strong>Optimicé la gestión de almacenamiento</strong> y control de stock, eliminando cuellos de botella mediante tablas estructuradas.</li>
-                                                <li><strong>Automaticé reportes semanales en Excel</strong>, reduciendo el procesamiento de datos de 4 horas a solo 20 minutos con macros dinámicas.</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <h6 class="text-[11px] font-extrabold uppercase tracking-wider text-indigo-700 border-b border-indigo-50 pb-1 mb-2">HABILIDADES TÉCNICAS (Escritas de forma limpia en formato de texto)</h6>
-                                        <p class="text-xs text-slate-705">Python (Pandas, Numpy) | SQL (PostgreSQL, MySQL) | Tableau | Excel Avanzado (Power Query, macros) | Metodologías Ágiles</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Formulas rendering -->
-                    <div class="bg-gradient-to-br from-slate-900 to-indigo-950 text-white rounded-3xl p-6 md:p-8 flex flex-col gap-3 shadow-md">
-                        <span class="text-xs text-amber-400 font-extrabold uppercase tracking-widest font-display">La Fórmula del Éxito para cada Logro</span>
-                        <h4 class="font-mono text-xs md:text-sm bg-slate-950/60 p-4 rounded-xl border border-slate-850 text-indigo-300 shadow-inner">
-                            Hice [X] + que resultó en [Y] + utilizando [Z]
-                        </h4>
-                        <div class="p-4 bg-slate-950/40 rounded-xl border-l-4 border-indigo-500 mt-2">
-                            <p class="text-xs text-slate-300"><strong>Ejemplo adaptado:</strong> "Automaticé reportes de ventas mensuales (X), reduciendo el tiempo de entrega en un 40% (Y), utilizando macros avanzadas y tablas dinámicas en Excel (Z)."</p>
-                        </div>
-                        <p class="text-[11px] text-slate-400 leading-relaxed mt-1">Esta estructura demuestra competencia técnica, foco en el negocio y dominio de herramientas de manera cuantificable.</p>
-                    </div>
-
-                    <!-- Transferable skills table -->
-<div>
-    <h3 class="font-display font-black text-xs text-slate-400 uppercase tracking-widest mb-3">
-        Cómo reformular tu experiencia anterior (Ejemplos de Roles)
-    </h3>
-    <div class="flex flex-col gap-3">
-        
-        <!-- Tarjeta 1: Asistente -->
-        <div class="p-5 bg-white border border-slate-200/80 rounded-2xl flex flex-col gap-4 shadow-sm hover:border-slate-300 transition-all duration-200">
-            <div class="flex flex-col md:flex-row md:items-center gap-3">
-                <div class="bg-rose-50/50 text-rose-800 border border-rose-100 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-center shrink-0">
-                    <span>Antes: Asistente Administrativo</span>
-                </div>
-                <div class="hidden md:block text-slate-300 font-bold">→</div>
-                <div class="bg-emerald-50/50 text-emerald-800 border border-emerald-200 px-3.5 py-1.5 rounded-xl text-xs font-bold text-center shrink-0 flex items-center justify-center gap-1.5 shadow-sm">
-                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i>
-                    <span>Ahora: Analista de Procesos y Datos</span>
-                </div>
-            </div>
-            <p class="text-xs text-slate-550 leading-relaxed">
-                <strong>Hack:</strong> Si en tu rol anterior hacías informes, tablas dinámicas y análisis, adáptalo para reflejar esas habilidades sin inventar.
-            </p>
-        </div>
-
-        <!-- Tarjeta 2: Vendedor -->
-        <div class="p-5 bg-white border border-slate-200/80 rounded-2xl flex flex-col gap-4 shadow-sm hover:border-slate-300 transition-all duration-200">
-            <div class="flex flex-col md:flex-row md:items-center gap-3">
-                <div class="bg-rose-50/50 text-rose-800 border border-rose-100 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-center shrink-0">
-                    <span>Antes: Vendedor en Tienda / Retail</span>
-                </div>
-                <div class="hidden md:block text-slate-300 font-bold">→</div>
-                <div class="bg-emerald-50/50 text-emerald-800 border border-emerald-200 px-3.5 py-1.5 rounded-xl text-xs font-bold text-center shrink-0 flex items-center justify-center gap-1.5 shadow-sm">
-                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i>
-                    <span>Ahora: Asesor de Atención y Control</span>
-                </div>
-            </div>
-            <p class="text-xs text-slate-550 leading-relaxed">
-                <strong>Hack:</strong> Destaca la resolución de problemas en tiempo real, comunicación asertiva y el manejo sistemático de recursos.
-            </p>
-        </div>
-
-        <!-- Tarjeta 3: Docente -->
-        <div class="p-5 bg-white border border-slate-200/80 rounded-2xl flex flex-col gap-4 shadow-sm hover:border-slate-300 transition-all duration-200">
-            <div class="flex flex-col md:flex-row md:items-center gap-3">
-                <div class="bg-rose-50/50 text-rose-800 border border-rose-100 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-center shrink-0">
-                    <span>Antes: Docente / Profesor</span>
-                </div>
-                <div class="hidden md:block text-slate-300 font-bold">→</div>
-                <div class="bg-emerald-50/50 text-emerald-800 border border-emerald-200 px-3.5 py-1.5 rounded-xl text-xs font-bold text-center shrink-0 flex items-center justify-center gap-1.5 shadow-sm">
-                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i>
-                    <span>Ahora: Especialista en Formación Técnica</span>
-                </div>
-            </div>
-            <p class="text-xs text-slate-550 leading-relaxed">
-                <strong>Hack:</strong> Tu habilidad pedagógica es oro puro para empresas remotas que necesitan manuales de usuario y onboarding claro.
-            </p>
-        </div>
-
+<a id="top"></a>
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow"><img src="logo.png" data-fallback="https://yt3.googleusercontent.com/Kuyu6tqAseg1Q1wWJmyk14Xr2D1tl4XECCwGvuhvjhet4BLJS6T6Il3wxuSlKC0X6KhClV3kjA=s120-c-k-c0x00ffffff-no-rj" alt="" onerror="if(this.dataset.fallback&&this.src.indexOf('logo.png')>-1){this.src=this.dataset.fallback}else{this.style.display='none'}" style="width:22px;height:22px;border-radius:50%;object-fit:cover"> Un recurso gratuito de <b>De Grano En Grano</b></div>
+      <h1 class="title">Hackea el <span class="hl">mercado</span> remoto <em>internacional.</em></h1>
+      <p class="lead">Enviar 100 postulaciones genéricas y recibir 100 rechazos automáticos es agotador. La verdad incómoda: <b>el 75% de los CV se descartan por un software antes de que un humano los lea.</b> No necesitas ser perfecto. Necesitas ser estratégico.</p>
+      <div class="cta-row">
+        <a href="#pilar-1" class="btn btn-primary">Empezar por el Pilar 1 <span class="arr">→</span></a>
+        <a href="#mapa" class="btn btn-ghost">Ver mapa de ruta</a>
+      </div>
     </div>
+    <div class="statcard">
+      <div class="big">75<span>%</span></div>
+      <p>de los CV son rechazados por un robot (ATS) antes de llegar a manos de un reclutador humano.</p>
+      <div class="divider"></div>
+      <div class="minirow"><span>Empresas que usan ATS</span><b>~90%</b></div>
+      <div class="minirow"><span>Pilares para volverte visible</span><b>4</b></div>
+      <div class="minirow"><span>Costo de esta guía</span><b>$0</b></div>
+    </div>
+  </div>
+</header>
+
+<!-- ROADMAP -->
+<div class="roadmap" id="mapa">
+  <div class="wrap">
+    <div class="rm-head">
+      <span class="tag">Mapa de ruta</span>
+      <h3>De grano en grano hasta tu oferta remota.</h3>
+    </div>
+    <div class="rm-steps">
+      <div class="rm-step"><div class="rm-num">01</div><h4>CV Anti-Robots</h4><p>Fórmula &amp; filtros</p></div>
+      <div class="rm-step"><div class="rm-num">02</div><h4>LinkedIn Imán</h4><p>SSI &amp; headline</p></div>
+      <div class="rm-step"><div class="rm-num">03</div><h4>Portafolio MVP</h4><p>A base de evidencias</p></div>
+      <div class="rm-step"><div class="rm-num">04</div><h4>Carta que sí leen</h4><p>Simulador outreach</p></div>
+      <div class="rm-step"><div class="rm-num">✓</div><h4>Evaluación</h4><p>Checklist 5 puntos</p></div>
+    </div>
+  </div>
 </div>
 
-                        
-                    <!-- Flow Control buttons -->
-                    <div class="mt-6 flex justify-between items-center">
-                        <button onclick="changeTab('inicio')" class="border border-slate-300 hover:bg-slate-50 text-slate-700 px-5 py-3 rounded-2xl text-xs font-bold transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer font-display">
-                            Atrás
-                        </button>
-                        <button onclick="changeTab('pilar2')" class="bg-indigo-600 hover:bg-indigo-700 cursor-pointer text-white px-6 py-3.5 rounded-2xl text-xs font-bold transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center gap-2 shadow-lg shadow-indigo-100 font-display">
-                            <span>Ir al Pilar 2: LinkedIn</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </button>
-                    </div>
+<!-- PILLARS OVERVIEW -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">Nota del mentor</span>
+      <h2>Los 4 pilares inquebrantables del empleo remoto.</h2>
+      <p>Esto no son teorías de bootcamp ni academia aburrida. Es un acelerador pragmático y honesto pensado para quien cambia de carrera, supera los 40 o siente que su inglés aún es básico.</p>
+    </div>
+    <div class="pillars">
+      <a href="#pilar-1" class="pcard reveal">
+        <span class="pnum">PILAR 01</span>
+        <h3>El CV Anti-Robots (ATS)</h3>
+        <p>Estructura una hoja de vida limpia de gráficos y optimizada con palabras clave para que el software te coloque en el top 10%.</p>
+        <span class="go">Hackear este pilar <span class="arr">→</span></span>
+        <span class="ghostnum">1</span>
+      </a>
+      <a href="#pilar-2" class="pcard reveal">
+        <span class="pnum">PILAR 02</span>
+        <h3>LinkedIn: tu vendedor 24/7</h3>
+        <p>Usa el algoritmo a tu favor, optimiza tu SSI y genera conexiones reales sin mendigar trabajo.</p>
+        <span class="go">Hackear este pilar <span class="arr">→</span></span>
+        <span class="ghostnum">2</span>
+      </a>
+      <a href="#pilar-3" class="pcard reveal">
+        <span class="pnum">PILAR 03</span>
+        <h3>El Portafolio Mínimo Viable</h3>
+        <p>Mostrar vale más que decir. Construye una vitrina de evidencias prácticas sin perder semanas diseñando webs.</p>
+        <span class="go">Hackear este pilar <span class="arr">→</span></span>
+        <span class="ghostnum">3</span>
+      </a>
+      <a href="#pilar-4" class="pcard reveal">
+        <span class="pnum">PILAR 04</span>
+        <h3>La carta persuasiva</h3>
+        <p>El arma secreta para switchers de carrera y mayores de 40: tres párrafos que explican tu valor transferible.</p>
+        <span class="go">Hackear este pilar <span class="arr">→</span></span>
+        <span class="ghostnum">4</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="section-rule reveal">«No es tu talento lo que falla, es el formato de tu hoja de vida.»</div>
+
+<!-- PILLAR 1 -->
+<section id="pilar-1">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">Pilar 01 · CV ATS</span>
+      <h2>El CV a prueba de robots.</h2>
+      <p>Un ATS (Applicant Tracking System) es el sistema de filtrado que usa cerca del 90% de las empresas remotas. Escanea tu CV buscando palabras clave, calcula tu coincidencia con la oferta y descarta automáticamente a quien no pasa la nota.</p>
+    </div>
+
+    <div class="callout reveal">
+      <span class="lbl">La regla de oro · diseño «desnudo»</span>
+      Para que un ATS lea tu experiencia, elimina sin piedad: fotos, columnas múltiples, tablas cruzadas, barras de habilidades, estrellas de nivel, iconos y logos decorativos. Todo eso es <b>ruido</b> que bloquea el escaneo del robot.
+    </div>
+
+    <div class="card reveal" style="margin-top:30px">
+      <span class="tool-tag">⚡ Herramienta interactiva</span>
+      <h3 style="font-size:26px;margin-bottom:6px">Simulador de filtros: ATS vs. Reclutador</h3>
+      <p style="color:var(--ink-soft);margin-bottom:6px">Cambia entre el CV rechazado y el aprobado. En el rechazado, <b>toca cada bloque punteado</b> para auditar por qué falla ante el robot.</p>
+      <div class="ats-toggle" role="tablist">
+        <button data-v="bad" class="on" onclick="setCV('bad')">✕ CV Rechazado</button>
+        <button data-v="good" onclick="setCV('good')">✓ CV Aprobado</button>
+      </div>
+
+      <!-- BAD -->
+      <div class="cv-pane show" id="pane-bad">
+        <div class="ats-wrap">
+          <div>
+            <div class="cv-doc">
+              <div class="bad-cv">
+                <div>
+                  <div class="bad-block photo" onclick="diag('photo')">📷<br>Foto retrato</div>
+                  <div class="bad-block" style="margin-top:10px" onclick="diag('contact')">Datos en imagen</div>
                 </div>
-
-                <!-- CONTENT TAB: PILAR 2 -->
-                <div id="content-pilar2" class="content-tab page-fade-in flex flex-col gap-6 hidden">
-                    <div class="flex flex-col gap-2">
-                        <span class="text-xs font-bold text-indigo-600 uppercase tracking-widest font-display">Deja de ser un espectador silencioso y activa el imán del algoritmo.</span>
-                        <h2 class="font-display font-black text-2xl md:text-3xl text-slate-900 tracking-tight leading-tight">
-                            Pilar 2: LinkedIn como tu Vendedor de 24 Horas
-                        </h2>
+                <div>
+                  <div class="bad-block" onclick="diag('col')">Columnas múltiples</div>
+                  <div class="bad-skill">
+                    <div class="bad-block" onclick="diag('graph')">
+                      Gráfico de skills
+                      <div class="bad-bar"><i style="width:80%"></i></div>
+                      <div class="bad-bar"><i style="width:65%"></i></div>
                     </div>
-
-                    <div class="flex flex-col gap-2">
-                        <h3 class="font-display font-extrabold text-base text-slate-900">El Algoritmo de Visibilidad y el SSI</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            El Social Selling Index (SSI) mide tu efectividad en 4 pilares de 0 a 105: Marca profesional, Conexiones adecuadas, Compartir valor y Relaciones de confianza. Cuanto más alto sea tu puntaje, LinkedIn te recomendará más en las búsquedas de reclutadores.
-                        </p>
-                    </div>
-
-                    <div class="flex flex-col gap-2">
-                        <h3 class="font-display font-extrabold text-base text-slate-900">El Titular Perfecto (Headline)</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            Tienes 220 caracteres. No escribas 'En búsqueda de oportunidades' (comunica desesperación). Tu titular debe ser: Rol Objetivo + 3 Herramientas Clave + Ventaja Competitiva o Propuesta de Valor.
-                        </p>
-                        <div class="p-3 bg-indigo-50 border border-indigo-100 rounded-xl font-mono text-xs text-indigo-950">
-                            <strong>Ejemplo real:</strong> Junior Data Analyst | SQL, Python, Tableau | Ayudando a traducir problemas de negocio en insights visuales y accionables.
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col gap-2">
-                        <h3 class="font-display font-extrabold text-base text-slate-900">El 'Acerca de' (About) que genera conexión</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            Las 2 primeras líneas son decisivas. Conecta tu historia personal con tu propósito técnico. Explica por qué te apasionan los datos o la tecnología y cierra con un llamado a la acción claro (correo o link al portafolio).
-                        </p>
-                    </div>
-
-                    
-
-                    <!-- INTERACTIVE LINKEDIN OPTIMIZER CARD -->
-                    <div class="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-sm my-4">
-                        <div class="bg-slate-900 text-white p-4">
-                            <h4 class="font-display font-extrabold text-xs uppercase tracking-widest text-amber-400">Herramienta Interactiva</h4>
-                            <h3 class="text-sm font-bold">Explorador de Anatomía del Perfil</h3>
-                        </div>
-
-                        <!-- Pill filters -->
-                        <div class="p-4 bg-indigo-500/10 flex flex-wrap justify-center gap-1.5 border-b border-slate-200">
-                            <button onclick="focusLinkedinTab('banner')" id="btn-ln-banner" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-white text-slate-700 border border-slate-200 hover:bg-slate-50">
-                                Banner Directo
-                            </button>
-                            <button onclick="focusLinkedinTab('titular')" id="btn-ln-titular" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-indigo-600 text-white shadow-sm">
-                                Titular Magnético
-                            </button>
-                            <button onclick="focusLinkedinTab('acerca_de')" id="btn-ln-acerca_de" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-white text-slate-700 border border-slate-200 hover:bg-slate-50">
-                                Acerca De (Extracto)
-                            </button>
-                            <button onclick="focusLinkedinTab('destacado')" id="btn-ln-destacado" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-white text-slate-700 border border-slate-200 hover:bg-slate-50">
-                                Sección Destacados
-                            </button>
-                        </div>
-
-                        <!-- Info Area updated dynamically -->
-                        <div class="p-5 bg-white flex flex-col gap-4">
-                            
-                            <!-- Tab: Banner -->
-                            <div id="pane-ln-banner" class="ln-pane flex flex-col gap-3 hidden">
-                                <div class="bg-gradient-to-r from-slate-800 to-indigo-950 h-28 md:h-36 rounded-xl flex items-center justify-center text-white border border-slate-700 font-display font-bold text-center px-4 shadow-inner">
-                                    [ JUNIOR DATA ANALYST | SQL - PYTHON - TABLEAU | INSIGHTS ACCIONABLES ]
-                                </div>
-                                <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl">
-                                    <h5 class="font-bold text-xs text-slate-900 flex items-center gap-1">
-                                        <i data-lucide="info" class="w-3.5 h-3.5 text-indigo-600"></i> Hack del Banner de Portada
-                                    </h5>
-                                    <p class="text-xs text-slate-550 mt-2 leading-relaxed">
-                                        No dejes el banner azul por defecto. Sube una portada limpia en Canva utilizando fondos oscuros con tipografías sans-serif blancas donde listes tus tres tecnologías principales y tu rol objetivo. Proyecta profesionalismo técnico al instante.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <!-- Tab: Titular (Visible initially) -->
-                            <div id="pane-ln-titular" class="ln-pane flex flex-col gap-3">
-                                <div class="p-5 border border-slate-250 bg-slate-50/50 rounded-xl flex items-start gap-4">
-                                    <div class="w-12 h-12 rounded-full bg-slate-300 flex items-center justify-center shrink-0 border border-slate-200 font-bold text-slate-650 font-display">Foto</div>
-                                    <div class="text-left">
-                                        <h5 class="font-bold text-xs text-slate-900">Juan Pérez <span class="bg-indigo-100 text-indigo-800 ml-1.5 px-2 py-0.5 rounded text-[9px] font-mono font-bold">1er</span></h5>
-                                        <p class="text-xs font-semibold text-indigo-650 mt-1">Junior Data Analyst | SQL, Python, Tableau | Reduciendo cuellos de botella mediante modelado predictivo y bases robustas.</p>
-                                        <p class="text-[10px] text-slate-400 mt-2">Ciudad de México • Información de contacto</p>
-                                    </div>
-                                </div>
-                                <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl">
-                                    <h5 class="font-bold text-xs text-slate-900 flex items-center gap-1">
-                                        <i data-lucide="info" class="w-3.5 h-3.5 text-indigo-600"></i> Hack del Titular
-                                    </h5>
-                                    <ul class="list-disc pl-4 text-xs text-slate-500 mt-2 flex flex-col gap-1">
-                                        <li>Usa palabras clave exactas para tu posición destino para que el algoritmo te indexe en las búsquedas de reclutadores.</li>
-                                        <li>Evita frases genéricas de desempleo como "Búsqueda activa" o "En transición". El algoritmo no filtra por esas palabras básicas.</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- Tab: Acerca de -->
-                            <div id="pane-ln-acerca_de" class="ln-pane flex flex-col gap-3 hidden">
-                                <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700 leading-relaxed font-mono whitespace-pre-wrap">"La curiosidad estructurada es mi combustible, y los datos limpios el mapa con el que respondo preguntas críticas del negocio. 
-
-Mi trayectoria inició en la docencia de nivel medio, lo que me formó con una asombrosa fluidez para documentar procesos dinámicos y liderar entrenamientos técnicos. Decidí transicionar mis habilidades hacia el Análisis de Datos y me he especializado en consultar fuentes relacionales complejas usando SQL, generar pipelines de limpieza en Python, y traducir esas fuentes en paneles interactivos e intuitivos de Tableau..."</div>
-                                <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl">
-                                    <h5 class="font-bold text-xs text-slate-900 flex items-center gap-1">
-                                        <i data-lucide="info" class="w-3.5 h-3.5 text-indigo-600"></i> Hack de la Sección 'Acerca de'
-                                    </h5>
-                                    <p class="text-xs text-slate-550 mt-2 leading-relaxed">
-                                        El <strong>gancho son las 2 primeras líneas</strong>. No saludes con formalidades genéricas. Cuenta por qué haces lo que haces, cuáles son tus fortalezas interpersonales, incluye tus proyectos prácticos terminados, tus tecnologías y un llamado a la acción.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <!-- Tab: Destacado -->
-                            <div id="pane-ln-destacado" class="ln-pane flex flex-col gap-3 hidden">
-                                <div class="border border-slate-200 rounded-xl overflow-hidden shadow-sm flex flex-col md:flex-row hover:border-indigo-400 transition-all cursor-pointer">
-                                    <div class="bg-indigo-600/90 text-white w-full md:w-32 h-20 md:h-24 flex items-center justify-center text-xs font-mono text-center shrink-0">
-                                        <i data-lucide="eye" class="w-6 h-6 mr-1"></i> Loom Demo
-                                    </div>
-                                    <div class="p-3 flex flex-col justify-between text-left">
-                                        <div>
-                                            <h6 class="font-bold text-xs text-slate-900">Demostración en video: Dashboard Financiero de Retail</h6>
-                                            <p class="text-[10px] text-slate-550 mt-1">Grabación de 2 minutos recorriendo el despliegue del proyecto, mostrando mi consulta SQL y el análisis exploratorio realizado.</p>
-                                        </div>
-                                        <span class="text-[9px] text-indigo-600 font-bold inline-flex items-center gap-0.5 mt-2">Ver video de prueba <i data-lucide="external-link" class="w-2.5 h-2.5"></i></span>
-                                    </div>
-                                </div>
-                                <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl">
-                                    <h5 class="font-bold text-xs text-slate-900 flex items-center gap-1">
-                                        <i data-lucide="info" class="w-3.5 h-3.5 text-indigo-600"></i> Hack de la Sección 'Destacado'
-                                    </h5>
-                                    <p class="text-xs text-slate-550 mt-2 leading-relaxed">
-                                        Esta sección está en el centro de tu perfil. Añade enlaces directos a tus proyectos más potentes con vistas previas claras, en lugar de dejarlos ocultos al final de la experiencia.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Networking bad vs good scripts -->
-                    <h3 class="font-display font-extrabold text-sm text-slate-900 uppercase tracking-widest mt-4">
-                        Networking Digital Estratégico (Olvida el SPAM de CVs)
-                    </h3>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="p-5 rounded-2xl bg-rose-50/50 border border-rose-150 flex flex-col gap-3">
-                            <span class="text-[10px] font-bold text-rose-700 uppercase tracking-widest flex items-center gap-1">
-                                <i data-lucide="thumbs-down" class="w-3.5 h-3.5"></i> Error que comunica desesperación
-                            </span>
-                            <p class="text-xs text-slate-700 italic bg-white p-3 rounded-xl border border-rose-100 leading-relaxed text-left">
-                                "Hola, busco trabajo de desarrollador o analista en tu empresa, ¿hay vacantes disponibles para postular?"
-                            </p>
-                            <p class="text-[11px] text-rose-950 leading-relaxed mt-1 text-left">
-                                Pedir empleo en el primer contacto pone toda la carga en un desconocido. Los reclutadores reciben decenas de estos mensajes al día y los ignoran sistemáticamente.
-                            </p>
-                        </div>
-
-                        <div class="p-5 rounded-2xl bg-emerald-50/50 border border-emerald-150 flex flex-col gap-3">
-                            <span class="text-[10px] font-bold text-emerald-700 uppercase tracking-widest flex items-center gap-1">
-                                <i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i> Enfoque inteligente y profesional
-                            </span>
-                            <p class="text-xs text-slate-705 italic bg-white p-3 rounded-xl border border-emerald-100 leading-relaxed text-left">
-                                "Hola [Nombre], vi tu post sobre gobernanza de datos en el sector retail. Me llamó mucho la atención tu enfoque sobre automatización de pipelines de limpieza. ¿Cuál consideras que es el mayor reto estructurando fuentes sucias actualmente?"
-                            </p>
-                            <p class="text-[11px] text-emerald-950 leading-relaxed mt-1 text-left">
-                                <strong>Por qué funciona:</strong> El primer mensaje abre una conversación genuina sobre desafíos técnicos comunes y abre valor. Nadie te recomendará si demuestras desesperación sin antes demostrar criterio técnico.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Flow Control buttons -->
-                    <div class="mt-6 flex justify-between items-center">
-                        <button onclick="changeTab('pilar1')" class="border border-slate-300 hover:bg-slate-50 text-slate-700 px-5 py-3 rounded-2xl text-xs font-bold transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer font-display">
-                            Atrás
-                        </button>
-                        <button onclick="changeTab('pilar3')" class="bg-indigo-600 hover:bg-indigo-700 cursor-pointer text-white px-6 py-3.5 rounded-2xl text-xs font-bold transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center gap-2 shadow-lg shadow-indigo-100 font-display">
-                            <span>Ir al Pilar 3: Portafolio MVP</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </button>
-                    </div>
+                  </div>
                 </div>
-
-                <!-- CONTENT TAB: PILAR 3 -->
-                <div id="content-pilar3" class="content-tab page-fade-in flex flex-col gap-6 hidden">
-                    <div class="flex flex-col gap-2">
-                        <span class="text-xs font-bold text-indigo-600 uppercase tracking-widest font-display font-medium">En el mundo remoto, demostrar lo que sabes hacer destruye cualquier falta de título académico.</span>
-                        <h2 class="font-display font-black text-2xl md:text-3xl text-slate-900 tracking-tight leading-tight">
-                            Pilar 3: El Portafolio 'Mínimo Viable' (MVP)
-                        </h2>
-                    </div>
-
-                    <p class="text-slate-600 text-sm leading-relaxed text-left">
-                        Un portafolio en tecnología es la mejor forma de mostrar lo que realmente sabes hacer, ya sea a través de proyectos reales o simulados. <strong>A diferencia del CV, que simplemente enumera lo que dices saber, tu portafolio demuestra de manera robusta cómo piensas, solucionas cuellos de botella y utilizas herramientas clave.</strong>
-                    </p>
-
-                    <div class="p-4 bg-indigo-50 border border-indigo-100 rounded-2xl flex items-start gap-3">
-                        <i data-lucide="info" class="w-5 h-5 text-indigo-600 shrink-0 mt-0.5"></i>
-                        <div class="text-left">
-                            <h4 class="font-bold text-xs uppercase tracking-wider text-indigo-900">¿No tienes experiencia técnica formal previa?</h4>
-                            <p class="text-xs text-indigo-950 mt-1 leading-relaxed">
-                                ¡No te preocupes! El portafolio es exactamente para rellenar este vacío. Tus propios proyectos prácticos personales, colaboraciones de código abierto, o simulaciones de casos de estudio reales, forman la base técnica de tu portafolio MVP.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Elements List -->
-                    <div>
-                        <h3 class="font-display font-extrabold text-sm text-slate-900 uppercase tracking-widest mb-3">
-                            Los 4 Requerimientos Esenciales de tu Portafolio MVP
-                        </h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-left">
-                            <div class="p-3 bg-white border border-slate-200 rounded-xl flex items-start gap-2 shadow-sm">
-                                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i>
-                                <p class="text-xs text-slate-600 leading-normal">Breve biografía con propósito profesional concreto (Sobre mí).</p>
-                            </div>
-                            <div class="p-3 bg-white border border-slate-200 rounded-xl flex items-start gap-2 shadow-sm">
-                                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i>
-                                <p class="text-xs text-slate-600 leading-normal">1 o 2 proyectos prácticos bien documentados (Problema -> Qué hice -> Resultados).</p>
-                            </div>
-                            <div class="p-3 bg-white border border-slate-200 rounded-xl flex items-start gap-2 shadow-sm">
-                                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i>
-                                <p class="text-xs text-slate-600 leading-normal">Pruebas visuales completas (capturas, embeds de herramientas o enlaces de repositorios).</p>
-                            </div>
-                            <div class="p-3 bg-white border border-slate-200 rounded-xl flex items-start gap-2 shadow-sm">
-                                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i>
-                                <p class="text-xs text-slate-600 leading-normal">Contacto visible de inmediato (enlaces directos, correo accesible en la cabecera).</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Notion tip block -->
-                    <div class="p-4 bg-slate-900 text-slate-100 rounded-2xl flex items-start gap-3">
-                        <i data-lucide="sparkles" class="w-5 h-5 text-amber-400 shrink-0 mt-0.5"></i>
-                        <p class="text-xs text-slate-300 leading-relaxed text-left">
-                            <strong>Tip del Mentor:</strong> Si no sabes programar una página web desde cero para tu portafolio, utiliza Notion. Es limpio, minimalista, se lee excelente en celulares y puedes duplicar plantillas profesionales en 5 minutos en lugar de gastar semanas programando código HTML/CSS superfluo.
-                        </p>
-                    </div>
-
-                    <!-- PORTFOLIO INTERACTIVE SWITCHER TOOL -->
-                    <div class="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-sm my-4">
-                        <div class="bg-slate-900 text-white p-4">
-                            <h4 class="font-display font-extrabold text-xs uppercase tracking-widest text-amber-400">Herramienta Interactiva</h4>
-                            <h3 class="text-sm font-bold">Explorador de Proyectos de un Portafolio MVP</h3>
-                            <p class="text-[10px] text-slate-400 mt-1">Navega para descubrir cómo estructurar de forma limpia un caso de estudio por especialidad técnica.</p>
-                        </div>
-
-                        <!-- Mini pills switcher for Project Examples -->
-                        <div class="p-4 bg-slate-50 flex overflow-x-auto gap-2 border-b border-slate-200">
-                            <button onclick="renderPortfolioMockup(0)" id="btn-port-0" class="px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all bg-indigo-600 text-white shadow-sm">
-                                Análisis de Datos
-                            </button>
-                            <button onclick="renderPortfolioMockup(1)" id="btn-port-1" class="px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all bg-white text-slate-600 border border-slate-250 hover:bg-slate-50">
-                                Aseguramiento de Calidad (QA)
-                            </button>
-                            <button onclick="renderPortfolioMockup(2)" id="btn-port-2" class="px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all bg-white text-slate-600 border border-slate-250 hover:bg-slate-50">
-                                Diseño UX/UI
-                            </button>
-                        </div>
-
-                        <!-- Notion layout simulation -->
-                        <div class="p-6 bg-white min-h-80 flex flex-col gap-4 text-left">
-                            <div class="flex items-center gap-2 text-[10px] text-slate-400 font-mono">
-                                <span>Notion Page</span>
-                                <span>/</span>
-                                <span>Casos de Estudio</span>
-                                <span>/</span>
-                                <span id="notion-p-field" class="text-slate-600 font-medium">Análisis de Datos / BI</span>
-                            </div>
-
-                            <h3 id="notion-p-title" class="font-display font-black text-xl text-slate-900 border-b border-slate-150 pb-2">
-                                🚀 Análisis de Retención en Ecommerce Latinoamericano
-                            </h3>
-
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-2">
-                                <div class="bg-rose-50/20 border border-rose-100 p-4 rounded-xl flex flex-col gap-1.5">
-                                    <span class="text-[10px] font-bold text-rose-700 uppercase tracking-widest">1. El Problema de Negocio</span>
-                                    <p id="notion-p-problem" class="text-xs text-slate-605 leading-relaxed">Identificar por qué el 25% de los carritos de compra activos se cancelaban durante el paso de pasarela de pago en Argentina.</p>
-                                </div>
-                                <div class="bg-emerald-50/20 border border-emerald-100 p-4 rounded-xl flex flex-col gap-1.5">
-                                    <span class="text-[10px] font-bold text-emerald-700 uppercase tracking-widest">2. Qué Hice (El Proceso)</span>
-                                    <p id="notion-p-what" class="text-xs text-slate-605 leading-relaxed">Análisis exploratorio de datos transaccionales, unión de tablas de bases de datos relacionales, y aislamiento de errores de API de pago.</p>
-                                </div>
-                            </div>
-
-                            <div class="p-4 bg-slate-50 border border-slate-205 rounded-xl flex flex-col gap-2">
-                                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">3. Herramientas técnicas de este proyecto</span>
-                                <div id="notion-p-tools" class="flex flex-wrap gap-1.5">
-                                    <!-- Dynamic badges -->
-                                    <span class="bg-white border border-slate-250 px-2.5 py-0.5 rounded-md text-[11px] font-mono text-slate-600">SQL (PostgreSQL)</span>
-                                    <span class="bg-white border border-slate-250 px-2.5 py-0.5 rounded-md text-[11px] font-mono text-slate-600">Tableau</span>
-                                    <span class="bg-white border border-slate-250 px-2.5 py-0.5 rounded-md text-[11px] font-mono text-slate-600">Excel Avanzado</span>
-                                </div>
-                            </div>
-
-                            <div class="p-4 bg-amber-50/30 border-l-4 border-amber-500 rounded-r-xl flex flex-col gap-1.5">
-                                <span class="text-[10px] font-bold text-amber-800 uppercase tracking-widest">4. Logro técnico medible o reporte final</span>
-                                <p id="notion-p-result" class="text-xs text-slate-700 leading-relaxed">
-                                    <strong>Localicé un error de timeout en tarjetas prepagas locales. Mi dashboard interactivo guió al equipo de desarrollo reduciendo el abandono de carritos en un 12%.</strong>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Flow Control buttons -->
-                    <div class="mt-6 flex justify-between items-center">
-                        <button onclick="changeTab('pilar2')" class="border border-slate-300 hover:bg-slate-50 text-slate-700 px-5 py-3 rounded-2xl text-xs font-bold transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer font-display">
-                            Atrás
-                        </button>
-                        <button onclick="changeTab('pilar4')" class="bg-indigo-600 hover:bg-indigo-700 cursor-pointer text-white px-6 py-3.5 rounded-2xl text-xs font-bold transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center gap-2 shadow-lg shadow-indigo-100 font-display">
-                            <span>Ir al Pilar 4: Cover Letter</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- CONTENT TAB: PILAR 4 -->
-                <div id="content-pilar4" class="content-tab page-fade-in flex flex-col gap-6 hidden">
-                    <div class="flex flex-col gap-2">
-                        <span class="text-xs font-bold text-indigo-600 uppercase tracking-widest font-display font-medium">No es una repetición aburrida de tu currículum. Es tu voz proyectada.</span>
-                        <h2 class="font-display font-black text-2xl md:text-3xl text-slate-900 tracking-tight leading-tight">
-                            Pilar 4: La Carta de Presentación que Sí Leen
-                        </h2>
-                    </div>
-
-                    <p class="text-slate-605 text-sm leading-relaxed text-left">
-                        La carta de presentación (Cover Letter) es tu mayor herramienta de persuasión si vienes de otro sector o buscas tu primer empleo remoto formal. <strong>No repite mecánicamente la lista de empleos del CV. Al contrario, explica de qué manera tus habilidades interpersonales y de negocio calzan con los desafíos de la empresa contratante.</strong>
-                    </p>
-
-                    <!-- Paragraph breakdown 3 cols -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-2 text-left">
-                        <div class="p-4 bg-white border border-slate-200 rounded-xl flex flex-col gap-2 shadow-sm">
-                            <span class="h-6 w-6 rounded-full bg-slate-900 text-white flex items-center justify-center text-xs font-bold font-mono">1</span>
-                            <h4 class="font-display font-bold text-xs text-slate-900 leading-tight">El Gancho de Investigación (El inicio)</h4>
-                            <p class="text-[11px] text-slate-500 leading-relaxed font-normal">
-                                Olvida el "A quien corresponda, escribo porque estoy interesado". Comienza demostrando que has investigado a la empresa. Menciona un premio reciente, su misión o sus productos específicos.
-                            </p>
-                        </div>
-
-                        <div class="p-4 bg-white border border-slate-200 rounded-xl flex flex-col gap-2 shadow-sm">
-                            <span class="h-6 w-6 rounded-full bg-slate-900 text-white flex items-center justify-center text-xs font-bold font-mono">2</span>
-                            <h4 class="font-display font-bold text-xs text-slate-900 leading-tight">La Conexión de Valor (El puente)</h4>
-                            <p class="text-[11px] text-slate-500 leading-relaxed font-normal">
-                                Demuestra cómo tus habilidades transferibles (de tus roles anteriores en administración, docencia, ventas) se acoplan perfectamente con los desafíos prácticos del puesto remoto al que postulas.
-                            </p>
-                        </div>
-
-                        <div class="p-4 bg-white border border-slate-200 rounded-xl flex flex-col gap-2 shadow-sm">
-                            <span class="h-6 w-6 rounded-full bg-slate-900 text-white flex items-center justify-center text-xs font-bold font-mono">3</span>
-                            <h4 class="font-display font-bold text-xs text-slate-900 leading-tight">El CTA de Confianza (El cierre)</h4>
-                            <p class="text-[11px] text-slate-500 leading-relaxed font-normal">
-                                Expresa entusiasmo genuino por el proyecto, invita suavemente a una llamada ágil de 15 minutos para proponer sugerencias basadas en evidencias, y agradece cordialmente por su valioso tiempo.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- GENERATOR INTERACTIVE COMPONENT -->
-                    <div class="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-sm my-4">
-                        <div class="bg-slate-900 text-white p-4">
-                            <h4 class="font-display font-extrabold text-xs uppercase tracking-widest text-amber-400">Herramienta Interactiva</h4>
-                            <h3 class="text-sm font-bold">Generador Automático de Carta de Presentación</h3>
-                            <p class="text-[10px] text-slate-400 mt-1">Configura tu perfil previo y tu cargo destino para generar un borrador estructurado adaptado con valor transferible.</p>
-                        </div>
-
-                        <!-- Form inputs -->
-                        <div class="p-5 bg-slate-50 border-b border-slate-200 grid grid-cols-1 sm:grid-cols-3 gap-4">
-                            <div class="flex flex-col gap-1.5 text-left">
-                                <label for="form-background" class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Mi background anterior</label>
-                                <select id="form-background" onchange="compileCoverLetter()" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-indigo-500 font-medium">
-                                    <option value="Ventas / Retail">Ventas y Atención al Cliente</option>
-                                    <option value="Administración / Finanzas">Administración, Recepción u Oficina</option>
-                                    <option value="Educación / Docencia">Profesor, Educación o Capacitación</option>
-                                    <option value="Logística / Operaciones">Logística, Inventarios o Coordinación</option>
-                                    <option value="Otro / Sin experiencia previa">Otro o Primer empleo formal</option>
-                                </select>
-                            </div>
-
-                            <div class="flex flex-col gap-1.5 text-left">
-                                <label for="form-role" class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Mi rol objetivo remoto</label>
-                                <select id="form-role" onchange="compileCoverLetter()" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-indigo-500 font-medium">
-                                    <option value="Analista de Datos Junior">Analista de Datos (Junior Data Analyst)</option>
-                                    <option value="QA Tester Manual o Automatizado">Aseguramiento de Calidad (QA)</option>
-                                    <option value="Desarrollador Frontend Junior">Desarrollador Web (Frontend/Fullstack)</option>
-                                    <option value="Asistente Virtual o Soporte de Datos">Soporte de Operaciones / Virtual Assistant</option>
-                                </select>
-                            </div>
-
-                            <div class="flex flex-col gap-1.5 text-left">
-                                <label for="form-company" class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Empresa Destino</label>
-                                <input type="text" id="form-company" oninput="compileCoverLetter()" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-indigo-500 font-medium" value="GlobalTech" placeholder="Ej. TechGlobal">
-                            </div>
-                        </div>
-
-                        <!-- Compile trigger actions row -->
-                        <div class="p-4 bg-slate-900 border-t border-slate-850 flex items-center justify-between flex-wrap gap-3">
-                            <button onclick="compileCoverLetter()" class="bg-indigo-600 text-white px-5 py-2.5 rounded-lg text-xs font-bold shadow-sm transition-all hover:bg-indigo-700 flex items-center gap-1.5 active:scale-95 cursor-pointer font-display font-medium">
-                                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-                                Generar Carta Optimizada
-                            </button>
-
-                            <button onclick="copyGeneratedLetter()" class="bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-700 px-4 py-2 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer">
-                                <span id="copy-letter-icon-placeholder"><i data-lucide="copy" class="w-3.5 h-3.5 text-slate-400"></i></span>
-                                <span id="copy-letter-btn-text">Copiar Borrador</span>
-                            </button>
-                        </div>
-
-                        <!-- Editable text box output -->
-                        <div class="p-5 bg-white text-left">
-                            <textarea id="cover-letter-textarea" class="w-full h-80 p-4 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-700 leading-relaxed font-mono resize-none focus:outline-none focus:ring-1 focus:ring-indigo-500" readonly></textarea>
-                            <p class="text-[10px] text-slate-400 mt-2">Puedes copiar este borrador editable de demostración para enviarlo en tus postulaciones.</p>
-                        </div>
-                    </div>
-
-                    <!-- Flow Control buttons -->
-                    <div class="mt-6 flex justify-between items-center">
-                        <button onclick="changeTab('pilar3')" class="border border-slate-300 hover:bg-slate-50 text-slate-700 px-5 py-3 rounded-2xl text-xs font-bold transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer font-display">
-                            Atrás
-                        </button>
-                        <button onclick="changeTab('checklist')" class="bg-indigo-600 hover:bg-indigo-700 cursor-pointer text-white px-6 py-3.5 rounded-2xl text-xs font-bold transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center gap-2 shadow-lg shadow-indigo-100 font-display">
-                            <span>Ir a la Evaluación Final</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- CONTENT TAB: CHECKLIST -->
-                <div id="content-checklist" class="content-tab page-fade-in flex flex-col gap-6 hidden">
-                    <div class="flex flex-col gap-2">
-                        <span class="text-xs font-bold text-indigo-600 uppercase tracking-widest font-display font-medium">Auditoría Rápida de Preparación para Postulaciones</span>
-                        <h2 class="font-display font-black text-2xl md:text-3xl text-slate-900 tracking-tight leading-tight">
-                            Checklist Final: Los 5 Filtros Críticos
-                        </h2>
-                    </div>
-
-                    <p class="text-slate-600 text-sm leading-relaxed text-left">
-                        Antes de hacer clic en enviar en cualquier portal remoto, abre este checklist interactivo y marca de forma honesta cada punto. <strong>Evita el descarte automático de los sistemas ATS y asegura que tu perfil sea un imán de respuestas fidedignas de reclutamiento.</strong>
-                    </p>
-
-                    <!-- CHECKLIST GRID CONTAINER -->
-                    <div class="flex flex-col gap-3 my-2 text-left">
-                        
-                        <!-- Check Box Card 1 -->
-                        <div onclick="toggleCheckItem(1)" id="check-card-1" class="p-4 rounded-xl border transition-all cursor-pointer flex items-start gap-3 bg-white border-slate-200 hover:border-indigo-300 text-slate-850">
-                            <div class="mt-0.5 shrink-0">
-                                <div id="check-tick-1" class="border-2 border-slate-300 w-4.5 h-4.5 rounded-md bg-white flex items-center justify-center p-0.5"><i data-lucide="check" class="w-3 h-3 text-white hidden"></i></div>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-xs uppercase tracking-wider">Elegibilidad ATS</h4>
-                                <p id="check-desc-1" class="text-xs mt-0.5 leading-relaxed text-slate-500">Mi CV está guardado en .pdf o .docx, no tiene columnas múltiples, tablas cruzadas, fotos, ni logos gráficos.</p>
-                            </div>
-                        </div>
-
-                        <!-- Check Box Card 2 -->
-                        <div onclick="toggleCheckItem(2)" id="check-card-2" class="p-4 rounded-xl border transition-all cursor-pointer flex items-start gap-3 bg-white border-slate-200 hover:border-indigo-300 text-slate-850">
-                            <div class="mt-0.5 shrink-0">
-                                <div id="check-tick-2" class="border-2 border-slate-300 w-4.5 h-4.5 rounded-md bg-white flex items-center justify-center p-0.5"><i data-lucide="check" class="w-3 h-3 text-white hidden"></i></div>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-xs uppercase tracking-wider">Fórmula de Resultados</h4>
-                                <p id="check-desc-2" class="text-xs mt-0.5 leading-relaxed text-slate-500">Todas las viñetas de mi experiencia siguen la fórmula de logro: Acción + Logro Cuantificable + Herramientas técnicas.</p>
-                            </div>
-                        </div>
-
-                        <!-- Check Box Card 3 -->
-                        <div onclick="toggleCheckItem(3)" id="check-card-3" class="p-4 rounded-xl border transition-all cursor-pointer flex items-start gap-3 bg-white border-slate-200 hover:border-indigo-300 text-slate-850">
-                            <div class="mt-0.5 shrink-0">
-                                <div id="check-tick-3" class="border-2 border-slate-300 w-4.5 h-4.5 rounded-md bg-white flex items-center justify-center p-0.5"><i data-lucide="check" class="w-3 h-3 text-white hidden"></i></div>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-xs uppercase tracking-wider">LinkedIn Imán</h4>
-                                <p id="check-desc-3" class="text-xs mt-0.5 leading-relaxed text-slate-500">Mi titular describe mi rol objetivo más mis tecnologías clave, evitando etiquetas de desempleo que comuniquen urgencia.</p>
-                            </div>
-                        </div>
-
-                        <!-- Check Box Card 4 -->
-                        <div onclick="toggleCheckItem(4)" id="check-card-4" class="p-4 rounded-xl border transition-all cursor-pointer flex items-start gap-3 bg-white border-slate-200 hover:border-indigo-300 text-slate-850">
-                            <div class="mt-0.5 shrink-0">
-                                <div id="check-tick-4" class="border-2 border-slate-300 w-4.5 h-4.5 rounded-md bg-white flex items-center justify-center p-0.5"><i data-lucide="check" class="w-3 h-3 text-white hidden"></i></div>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-xs uppercase tracking-wider">Portafolio MVP Activo</h4>
-                                <p id="check-desc-4" class="text-xs mt-0.5 leading-relaxed text-slate-500">Tengo al menos 1 proyecto documentado explicando el problema, proceso y resultado con enlaces totalmente funcionales en Notion.</p>
-                            </div>
-                        </div>
-
-                        <!-- Check Box Card 5 -->
-                        <div onclick="toggleCheckItem(5)" id="check-card-5" class="p-4 rounded-xl border transition-all cursor-pointer flex items-start gap-3 bg-white border-slate-200 hover:border-indigo-300 text-slate-850">
-                            <div class="mt-0.5 shrink-0">
-                                <div id="check-tick-5" class="border-2 border-slate-300 w-4.5 h-4.5 rounded-md bg-white flex items-center justify-center p-0.5"><i data-lucide="check" class="w-3 h-3 text-white hidden"></i></div>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-xs uppercase tracking-wider">Personalización Absoluta</h4>
-                                <p id="check-desc-5" class="text-xs mt-0.5 leading-relaxed text-slate-500">Cada postulación que envío incluye una adaptación clave en el perfil del CV y una carta breve basada en investigar a esa empresa.</p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- SUCCESS CERTIFICATION MESSAGE -->
-                    <div id="checklist-success-banner" class="bg-emerald-100 border border-emerald-300 p-6 rounded-3xl text-center flex flex-col items-center gap-3 shadow-md hidden page-fade-in">
-                        <div class="w-12 h-12 bg-emerald-600 text-white rounded-full flex items-center justify-center shadow-md">
-                            <i data-lucide="award" class="w-6 h-6 animate-pulse"></i>
-                        </div>
-                        <h4 class="font-display font-black text-emerald-905 text-lg leading-tight uppercase">
-                            ¡Tu Hoja de Ruta de Empleabilidad Está Listo!
-                        </h4>
-                        <p class="text-xs text-emerald-800 max-w-lg leading-relaxed">
-                            Has superado los requerimientos técnicos y analíticos descritos en la guía. Tu CV es anti-robots, tu LinkedIn proyecta autoridad continua, tu portafolio MVP demuestra evidencias fidedignas y tus cartas de presentación explican tu valor diferencial desde la empatía. ¡Es hora de enviar esas postulaciones inteligentes con absoluta confianza!
-                        </p>
-                    </div>
-
-                    <!-- Resource integration links -->
-                    <div class="mt-4 border-t border-slate-200 pt-6">
-                        <h3 class="font-display font-extrabold text-sm text-slate-900 uppercase tracking-widest mb-3">
-                            Herramientas Gratuitas de Escaneo Recomendadas
-                        </h3>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
-                            <a href="https://www.jobscan.co/" target="_blank" rel="noreferrer" class="p-4 bg-white border border-slate-200 rounded-xl hover:border-indigo-400 hover:shadow-sm transition-all flex flex-col justify-between group">
-                                <div>
-                                    <span class="font-bold text-xs text-slate-950 group-hover:text-indigo-600 transition-colors">Jobscan</span>
-                                    <p class="text-[10px] text-slate-500 mt-1">Compara tu CV en formato de texto plano contra una oferta exacta y calcula tu coincidencia ATS.</p>
-                                </div>
-                                <span class="text-[9px] text-indigo-600 font-bold inline-flex items-center gap-0.5 mt-2">Visitar sitio <i data-lucide="external-link" class="w-2.5 h-2.5"></i></span>
-                            </a>
-
-                            <a href="https://resumake.io/" target="_blank" rel="noreferrer" class="p-4 bg-white border border-slate-200 rounded-xl hover:border-indigo-400 hover:shadow-sm transition-all flex flex-col justify-between group">
-                                <div>
-                                    <span class="font-bold text-xs text-slate-950 group-hover:text-indigo-600 transition-colors">Resumake</span>
-                                    <p class="text-[10px] text-slate-500 mt-1">Crea curriculums en texto plano compatible con ATS descargándolos en PDF limpio de forma libre.</p>
-                                </div>
-                                <span class="text-[9px] text-indigo-600 font-bold inline-flex items-center gap-0.5 mt-2">Visitar sitio <i data-lucide="external-link" class="w-2.5 h-2.5"></i></span>
-                            </a>
-
-                            <a href="https://www.resumeworded.com/" target="_blank" rel="noreferrer" class="p-4 bg-white border border-slate-200 rounded-xl hover:border-indigo-400 hover:shadow-sm transition-all flex flex-col justify-between group">
-                                <div>
-                                    <span class="font-bold text-xs text-slate-950 group-hover:text-indigo-600 transition-colors">Resume Worded</span>
-                                    <p class="text-[10px] text-slate-500 mt-1">Auditoría por inteligencia artificial de la estructura, redacción y palabras clave de tu hoja de vida.</p>
-                                </div>
-                                <span class="text-[9px] text-indigo-605 font-bold inline-flex items-center gap-0.5 mt-2">Visitar sitio <i data-lucide="external-link" class="w-2.5 h-2.5"></i></span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Flow Control buttons -->
-                    <div class="mt-6 flex justify-between items-center font-display">
-                        <button onclick="changeTab('pilar4')" class="border border-slate-300 hover:bg-slate-50 text-slate-700 px-5 py-3 rounded-2xl text-xs font-bold transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer">
-                            Atrás
-                        </button>
-                        <button onclick="clearChecklist()" class="text-slate-400 hover:text-slate-600 text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer">
-                            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
-                            <span>Limpiar Checklist</span>
-                        </button>
-                    </div>
-                </div>
-
+              </div>
             </div>
-        </section>
-
-    </main>
-
-    <!-- Premium Footer -->
-    <footer class="bg-slate-900 text-white mt-12 py-10 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-3">
-                <div class="bg-indigo-600 text-white p-2 rounded-xl">
-                    <i data-lucide="compass" class="w-4 h-4"></i>
-                </div>
-                <div class="text-left">
-                    <p class="text-xs font-black text-white tracking-widest uppercase">Kit de Lanzamiento Remoto</p>
-                    <p class="text-[10px] text-slate-400">Hecho de forma pragmática para la emancipación digital en Latinoamérica.</p>
-                </div>
+          </div>
+          <div>
+            <div class="score bad"><span class="pct">15%</span><small>Compatibilidad ATS · bloqueado por elementos gráficos. El robot no puede extraer los textos principales.</small></div>
+            <div class="diag" id="diagbox">
+              <span class="mono">DIAGNÓSTICO</span>
+              Toca un bloque punteado del CV para ver por qué el robot lo rechaza.
             </div>
-            <div class="flex items-center gap-6 text-xs text-slate-400">
-                <span>Versión 1.0</span>
-                <span>|</span>
-                <span>Libre de Plagio</span>
-                <span>|</span>
-                <span>Para todos los perfiles de transición</span>
-            </div>
+          </div>
         </div>
-    </footer>
+      </div>
 
-    <!-- INTERTACTIVE JAVASCRIPT LOGIC CONTROLLER -->
-    <script>
-        // State variables
-        let activeTab = 'inicio';
-        let isAtsApproved = false; // Toggle default: rejected
-        let activeAtsFeature = null;
-        let linkedinFocus = 'titular';
-        let selectedPortfolioIndex = 0;
-        let checkedItems = {
-            1: false,
-            2: false,
-            3: false,
-            4: false,
-            5: false
-        };
+      <!-- GOOD -->
+      <div class="cv-pane" id="pane-good">
+        <div class="ats-wrap">
+          <div>
+            <div class="cv-doc good-cv">
+              <h5>JUAN PÉREZ · Analista de Procesos y Datos</h5>
+              <div class="contact">linkedin.com/in/juan-perez-data · juan.perez@email.com · +52 55-12-34-56-78</div>
+              <h6>Experiencia laboral</h6>
+              <div class="role">Asesor de Procesos e Inventario — Distribuidora Local <span>06/2021 – Actualidad</span></div>
+              <ul>
+                <li><b>Optimicé la gestión de almacenamiento</b> y control de stock, eliminando cuellos de botella mediante tablas estructuradas.</li>
+                <li><b>Automaticé reportes semanales en Excel</b>, reduciendo el procesamiento de datos de 4 horas a 20 minutos con macros dinámicas.</li>
+              </ul>
+              <h6>Habilidades técnicas (texto plano)</h6>
+              <div class="skills">Python (Pandas, Numpy) · SQL (PostgreSQL, MySQL) · Tableau · Excel Avanzado (Power Query, macros) · Metodologías Ágiles</div>
+            </div>
+          </div>
+          <div>
+            <div class="score good"><span class="pct">98%</span><small>Compatibilidad ATS · estructura limpia, fuente clásica, palabras clave indexadas. Lectura exitosa.</small></div>
+            <div class="diag" style="background:var(--forest)">
+              <span class="mono" style="color:var(--lime)">POR QUÉ FUNCIONA</span>
+              Una sola columna en orden lógico, contacto en texto seleccionable, y skills escritas como palabras (no como barras). El robot extrae todo sin tropezar.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-        // Static data object for portfolio case examples
-        const portfolioData = [
-            {
-                title: "Análisis de Retención en Ecommerce Latinoamericano",
-                field: "Análisis de Datos / Business Intelligence",
-                problem: "Identificar por qué el 25% de los carritos de compra activos se cancelaban durante el paso de pasarela de pago en Argentina.",
-                whatIDid: "Análisis exploratorio de datos transaccionales, unión de tablas de bases de datos relacionales, y aislamiento de errores de API de pago.",
-                result: "Localicé un error de timeout en tarjetas prepagas locales. Mi dashboard interactivo guió al equipo de desarrollo reduciendo el abandono de carritos en un 12%.",
-                tools: ["SQL (PostgreSQL)", "Tableau", "Excel Avanzado"]
-            },
-            {
-                title: "Automatización de Pruebas en Portal de Reservas",
-                field: "Aseguramiento de Calidad (QA Manual & Automatizado)",
-                problem: "El proceso manual de regresión tomaba 3 días enteros por cada despliegue, demorando el ritmo del equipo.",
-                whatIDid: "Escribí scripts de prueba robustos simulando flujos completos de login, reserva de hotel y checkout.",
-                result: "Reducción del tiempo de pruebas de regresión de 24 horas acumuladas a solo 15 minutos de ejecución automatizada limpia.",
-                tools: ["Python", "Selenium WebDriver", "pytest", "Git"]
-            },
-            {
-                title: "Rediseño de Checkout Móvil para App Financiera",
-                field: "Diseño UX/UI",
-                problem: "Los usuarios de más de 50 años abandonaban el flujo de transferencia debido a la tipografía pequeña y botones confusos.",
-                whatIDid: "Mapeé el customer journey, realicé entrevistas de usabilidad remotas con 10 personas reales, y creé prototipos de alta fidelidad.",
-                result: "El testeo final demostró un incremento del 35% en la tasa de éxito de transferencias exitosas en el primer intento.",
-                tools: ["Figma", "Maze", "Notion (Casos de estudio)"]
-            }
-        ];
+    <!-- FORMULA -->
+    <div class="formula reveal">
+      <span class="tag" style="color:var(--lime);margin-bottom:12px;display:inline-flex">La fórmula de cada logro</span>
+      <div class="f-line">Hice <span class="x">[X]</span> + que resultó en <span class="y">[Y]</span> + usando <span class="z">[Z]</span></div>
+      <p class="ex"><b>Ejemplo:</b> «Automaticé reportes de ventas mensuales <span style="color:var(--lime)">(X)</span>, reduciendo el tiempo de entrega un 40% <span style="color:var(--clay-soft)">(Y)</span>, con macros y tablas dinámicas en Excel <span style="color:#7fc7ff">(Z)</span>.» Demuestra competencia técnica, foco en el negocio y dominio de herramientas, de forma cuantificable.</p>
+    </div>
 
-        // ATS Simulated warnings mapping
-        const atsWarnings = {
-            'foto': "❌ RECHAZADO POR ATS: El software de escaneo no reconoce rostros. Almacena la imagen como un bloque de código basura que puede corromper el procesamiento de tus datos esenciales.",
-            'columnas': "❌ RECHAZADO POR ATS: La lectura de doble columna confunde el orden de lectura cronológica de izquierda a derecha. El sistema puede mezclar tus fechas de estudio con tus empleos anteriores.",
-            'graficos': "❌ RECHAZADO POR ATS: Los diagramas circulares y las barras de nivel son indetectables para el algoritmo. Para un robot, tu nivel de inglés o de Python es cero si está representado con un gráfico."
-        };
+    <h3 style="font-size:24px;margin:36px 0 4px" class="reveal">Cómo reformular tu experiencia anterior</h3>
+    <div class="reframe reveal">
+      <div class="rf-row">
+        <div class="rf-old"><small>Antes</small><b>Asistente Administrativo</b></div>
+        <div class="rf-arrow">→</div>
+        <div class="rf-new"><small>Ahora</small><b>Analista de Procesos y Datos</b></div>
+        <div class="rf-hack"><b>Hack:</b> si hacías informes, tablas dinámicas y análisis, refléjalo como esas habilidades —sin inventar nada.</div>
+      </div>
+      <div class="rf-row">
+        <div class="rf-old"><small>Antes</small><b>Vendedor en Tienda / Retail</b></div>
+        <div class="rf-arrow">→</div>
+        <div class="rf-new"><small>Ahora</small><b>Asesor de Atención y Control</b></div>
+        <div class="rf-hack"><b>Hack:</b> destaca resolución de problemas en tiempo real, comunicación asertiva y manejo sistemático de recursos.</div>
+      </div>
+      <div class="rf-row">
+        <div class="rf-old"><small>Antes</small><b>Docente / Profesor</b></div>
+        <div class="rf-arrow">→</div>
+        <div class="rf-new"><small>Ahora</small><b>Especialista en Formación Técnica</b></div>
+        <div class="rf-hack"><b>Hack:</b> tu habilidad pedagógica es oro para empresas remotas que necesitan manuales de usuario y onboarding claro.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        // On document loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            // Setup Lucide initial calls
-            lucide.createIcons();
-            
-            // Sync Initial UI state
-            changeTab('inicio');
-            compileCoverLetter();
-        });
+<div class="section-rule reveal">«Deja de ser un espectador silencioso y activa el imán del algoritmo.»</div>
 
-        // 1. Core Tab Switching engine
-        function changeTab(tabId) {
-            activeTab = tabId;
+<!-- PILLAR 2 -->
+<section id="pilar-2">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">Pilar 02 · LinkedIn</span>
+      <h2>LinkedIn como tu vendedor de 24 horas.</h2>
+      <p>El Social Selling Index (SSI) mide tu efectividad de 0 a 105 en 4 frentes: marca profesional, conexiones adecuadas, compartir valor y relaciones de confianza. Cuanto más alto, más te recomienda LinkedIn en las búsquedas de reclutadores.</p>
+    </div>
 
-            // Hide all tabs panels
-            document.querySelectorAll('.content-tab').forEach(el => {
-                el.classList.add('hidden');
-            });
-            // Show only target
-            const activePanel = document.getElementById(`content-${tabId}`);
-            if (activePanel) {
-                activePanel.classList.remove('hidden');
-                activePanel.classList.add('page-fade-in');
-            }
+    <div class="li-grid">
+      <div class="callout reveal">
+        <span class="lbl">El titular perfecto · 220 caracteres</span>
+        No escribas «En búsqueda de oportunidades» (comunica desesperación). Usa la fórmula:<br><br>
+        <b>Rol objetivo + 3 herramientas clave + propuesta de valor.</b><br><br>
+        <span class="mono" style="font-size:13px;color:var(--forest)">Ej.: Junior Data Analyst | SQL, Python, Tableau | Traduzco problemas de negocio en insights visuales y accionables.</span>
+      </div>
+      <div class="callout reveal">
+        <span class="lbl">El «Acerca de» que conecta</span>
+        Las <b>2 primeras líneas</b> son decisivas: es el gancho. Conecta tu historia personal con tu propósito técnico, explica por qué te apasionan los datos o la tecnología, y cierra con un llamado a la acción claro (correo o link al portafolio).
+      </div>
+    </div>
 
-            // Sync Header pills active style classes
-            const tabsList = ['inicio', 'pilar1', 'pilar2', 'pilar3', 'pilar4', 'checklist'];
-            tabsList.forEach(id => {
-                const navBtn = document.getElementById(`hdr-nav-${id}`);
-                if (navBtn) {
-                    if (id === tabId) {
-                        if (id === 'checklist') {
-                            navBtn.className = "px-4 py-2 rounded-xl text-xs font-bold tracking-wide transition-all duration-200 bg-indigo-600 text-white shadow-md shadow-indigo-100";
-                        } else {
-                            navBtn.className = "px-4 py-2 rounded-xl text-xs font-bold tracking-wide transition-all duration-200 bg-white text-indigo-700 shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-slate-200/40";
-                        }
-                    } else {
-                        if (id === 'checklist') {
-                            navBtn.className = "px-4 py-2 rounded-xl text-xs font-bold tracking-wide transition-all duration-200 text-indigo-700 hover:bg-slate-50";
-                        } else {
-                            navBtn.className = "px-4 py-2 rounded-xl text-xs font-bold tracking-wide transition-all duration-200 text-slate-600 hover:text-slate-900 hover:bg-white/50";
-                        }
-                    }
-                }
+    <div class="card reveal" style="margin-top:30px">
+      <span class="tool-tag">⚡ Herramienta interactiva</span>
+      <h3 style="font-size:26px;margin-bottom:14px">Explorador de anatomía del perfil</h3>
+      <div class="tabs" id="li-tabs">
+        <button class="on" onclick="liTab(0)">Banner directo</button>
+        <button onclick="liTab(1)">Titular magnético</button>
+        <button onclick="liTab(2)">Acerca de</button>
+        <button onclick="liTab(3)">Destacados</button>
+      </div>
 
-                // Sync Aside Roadmap buttons
-                const mapBtn = document.getElementById(`map-btn-${id}`);
-                const mapBadge = document.getElementById(`map-badge-${id}`);
-                if (mapBtn && mapBadge) {
-                    if (id === tabId) {
-                        mapBtn.className = "w-full flex items-center gap-3 px-4.5 py-3 rounded-2xl transition-all duration-200 text-left text-xs font-bold border hover:scale-[1.01] active:scale-[0.99] bg-indigo-50/70 border-indigo-200/80 text-indigo-950 shadow-sm";
-                        mapBadge.className = "w-7 h-7 rounded-lg flex items-center justify-center text-[10px] font-bold bg-indigo-600 text-white";
-                    } else {
-                        if (id === 'checklist') {
-                            mapBtn.className = "w-full flex items-center gap-3 px-4.5 py-3 rounded-2xl transition-all duration-200 text-left text-xs font-bold border hover:scale-[1.01] active:scale-[0.99] border-transparent hover:bg-slate-50/80 text-slate-600";
-                            mapBadge.className = "w-7 h-7 rounded-lg flex items-center justify-center text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200";
-                        } else {
-                            mapBtn.className = "w-full flex items-center gap-3 px-4.5 py-3 rounded-2xl transition-all duration-200 text-left text-xs font-bold border hover:scale-[1.01] active:scale-[0.99] border-transparent hover:bg-slate-50/80 text-slate-600";
-                            mapBadge.className = "w-7 h-7 rounded-lg flex items-center justify-center text-[10px] font-bold bg-slate-100 text-slate-500";
-                        }
-                    }
-                }
-            });
+      <div class="li-grid">
+        <div>
+          <div class="li-mock">
+            <div class="li-banner"><span>JUNIOR DATA ANALYST<br>SQL · PYTHON · TABLEAU</span></div>
+            <div class="li-body">
+              <div class="li-pfp">JP</div>
+              <div class="li-name">Juan Pérez <span class="deg">1.°</span></div>
+              <div class="li-headline">Junior Data Analyst | SQL, Python, Tableau | Reduzco cuellos de botella con modelado predictivo y bases robustas.</div>
+              <div class="li-loc">Ciudad de México · Información de contacto</div>
+              <div class="li-about">«La curiosidad estructurada es mi combustible, y los datos limpios el mapa con el que respondo preguntas críticas del negocio…»</div>
+              <div class="li-feat">
+                <div class="thumb">▶ Loom<br>2 min</div>
+                <div><b>Demo: Dashboard Financiero de Retail</b><p>Recorrido del proyecto: consulta SQL + análisis exploratorio.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="tabpane show" id="li-0">
+            <h4 style="font-size:20px;margin-bottom:8px">Hack del banner</h4>
+            <p style="color:var(--ink-soft)">No dejes el banner azul por defecto. Sube una portada limpia en Canva con fondo oscuro y tipografía sans-serif blanca donde listes tus <b>tres tecnologías principales</b> y tu rol objetivo. Proyecta profesionalismo técnico al instante.</p>
+          </div>
+          <div class="tabpane" id="li-1">
+            <h4 style="font-size:20px;margin-bottom:8px">Hack del titular</h4>
+            <p style="color:var(--ink-soft)">Usa palabras clave exactas de tu posición destino para que el algoritmo te indexe en las búsquedas de reclutadores. <b>Evita</b> frases genéricas de desempleo como «Búsqueda activa» o «En transición»: el algoritmo no filtra por esas palabras.</p>
+          </div>
+          <div class="tabpane" id="li-2">
+            <h4 style="font-size:20px;margin-bottom:8px">Hack del «Acerca de»</h4>
+            <p style="color:var(--ink-soft)">El gancho son las 2 primeras líneas. No saludes con formalidades. Cuenta por qué haces lo que haces, tus fortalezas interpersonales, tus proyectos prácticos terminados, tus tecnologías y un llamado a la acción.</p>
+          </div>
+          <div class="tabpane" id="li-3">
+            <h4 style="font-size:20px;margin-bottom:8px">Hack de «Destacados»</h4>
+            <p style="color:var(--ink-soft)">Está en el centro de tu perfil. Añade enlaces directos a tus proyectos más potentes con vistas previas claras, en lugar de dejarlos ocultos al final de la experiencia.</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-            // Scroll to upper viewport smoothly
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+    <h3 style="font-size:24px;margin:36px 0 4px" class="reveal">Networking estratégico (olvida el spam de CV)</h3>
+    <div class="netcompare reveal">
+      <div class="net bad">
+        <span class="lbl">✕ Comunica desesperación</span>
+        <div class="msg">«Hola, busco trabajo de desarrollador o analista en tu empresa, ¿hay vacantes para postular?»</div>
+        <p>Pedir empleo en el primer contacto pone toda la carga en un desconocido. Los reclutadores reciben decenas de estos mensajes al día y los ignoran.</p>
+      </div>
+      <div class="net good">
+        <span class="lbl">✓ Enfoque inteligente</span>
+        <div class="msg">«Hola [Nombre], vi tu post sobre gobernanza de datos en retail. Me llamó la atención tu enfoque de automatización de pipelines. ¿Cuál crees que es hoy el mayor reto al estructurar fuentes sucias?»</div>
+        <p>Abre una conversación genuina sobre desafíos técnicos comunes. Nadie te recomienda si muestras desesperación antes que criterio.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-        // 2. ATS Simulator Actions Trigger
-        function toggleATSPreview(mode) {
-            const btnRejected = document.getElementById('btn-ats-rejected');
-            const btnApproved = document.getElementById('btn-ats-approved');
-            const badPart = document.getElementById('ats-rejected-content');
-            const goodPart = document.getElementById('ats-approved-content');
+<div class="section-rule reveal">«Demostrar lo que sabes hacer destruye cualquier falta de título académico.»</div>
 
-            if (mode === 'rejected') {
-                btnRejected.className = "px-3 py-1 rounded-md text-xs font-semibold flex items-center gap-1.5 transition-all bg-rose-600 text-white shadow-sm";
-                btnApproved.className = "px-3 py-1 rounded-md text-xs font-semibold flex items-center gap-1.5 transition-all text-slate-400 hover:text-white";
-                badPart.classList.remove('hidden');
-                goodPart.classList.add('hidden');
-            } else {
-                btnRejected.className = "px-3 py-1 rounded-md text-xs font-semibold flex items-center gap-1.5 transition-all text-slate-400 hover:text-white";
-                btnApproved.className = "px-3 py-1 rounded-md text-xs font-semibold flex items-center gap-1.5 transition-all bg-emerald-600 text-white shadow-sm";
-                badPart.classList.add('hidden');
-                goodPart.classList.remove('hidden');
-            }
-        }
+<!-- PILLAR 3 -->
+<section id="pilar-3">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">Pilar 03 · Portafolio MVP</span>
+      <h2>El portafolio mínimo viable.</h2>
+      <p>A diferencia del CV, que enumera lo que dices saber, tu portafolio demuestra cómo piensas, cómo resuelves cuellos de botella y cómo usas tus herramientas clave. ¿Sin experiencia formal previa? El portafolio existe justo para llenar ese vacío con proyectos personales o casos simulados.</p>
+    </div>
 
-        function selectAtsFeature(feature) {
-            const feedbackNotes = document.getElementById('ats-feature-notes');
-            if (feedbackNotes && atsWarnings[feature]) {
-                feedbackNotes.innerHTML = atsWarnings[feature];
-                feedbackNotes.className = "p-4 bg-rose-50 border-l-4 border-rose-600 rounded-r-lg text-xs text-rose-950 animate-pulse";
-                setTimeout(() => {
-                    feedbackNotes.className = "p-4 bg-rose-50 border-l-4 border-rose-600 rounded-r-lg text-xs text-rose-950";
-                }, 400);
-            }
-        }
+    <div class="req-grid reveal">
+      <div class="req"><div class="n">1</div><p>Breve biografía con propósito profesional concreto (Sobre mí).</p></div>
+      <div class="req"><div class="n">2</div><p>1–2 proyectos bien documentados: Problema → Qué hice → Resultados.</p></div>
+      <div class="req"><div class="n">3</div><p>Pruebas visuales: capturas, embeds o enlaces de repositorio.</p></div>
+      <div class="req"><div class="n">4</div><p>Contacto visible de inmediato: enlaces y correo en la cabecera.</p></div>
+    </div>
 
-        // 3. LinkedIn Anatomy Switcher
-        function focusLinkedinTab(tabId) {
-            linkedinFocus = tabId;
+    <div class="callout reveal">
+      <span class="lbl">Tip del mentor</span>
+      ¿No sabes programar una web desde cero? Usa <b>Notion</b>. Es limpio, se lee excelente en celular y puedes duplicar plantillas profesionales en 5 minutos, en lugar de gastar semanas en HTML/CSS superfluo.
+    </div>
 
-            // Hide all sub-pane visual views
-            document.querySelectorAll('.ln-pane').forEach(el => {
-                el.classList.add('hidden');
-            });
-            // Show selected
-            document.getElementById(`pane-ln-${tabId}`).classList.remove('hidden');
+    <div class="card reveal" style="margin-top:30px">
+      <span class="tool-tag">⚡ Herramienta interactiva</span>
+      <h3 style="font-size:26px;margin-bottom:6px">Explorador de proyectos MVP</h3>
+      <p style="color:var(--ink-soft);margin-bottom:16px">Descubre cómo estructurar un caso de estudio limpio según tu especialidad.</p>
+      <div class="tabs" id="pf-tabs">
+        <button class="on" onclick="pfTab(0)">📊 Análisis de Datos</button>
+        <button onclick="pfTab(1)">🔍 QA / Calidad</button>
+        <button onclick="pfTab(2)">🎨 Diseño UX/UI</button>
+      </div>
 
-            // Toggle selected styling classes on buttons
-            const tabsList = ['banner', 'titular', 'acerca_de', 'destacado'];
-            tabsList.forEach(id => {
-                const btn = document.getElementById(`btn-ln-${id}`);
-                if (btn) {
-                    if (id === tabId) {
-                        btn.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-indigo-600 text-white shadow-sm";
-                    } else {
-                        btn.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-white text-slate-700 border border-slate-200 hover:bg-slate-50";
-                    }
-                }
-            });
-        }
+      <div class="tabpane show" id="pf-0">
+        <div class="notion">
+          <div class="notion-bar">Notion · Casos de Estudio / Análisis de Datos / BI</div>
+          <div class="notion-body">
+            <h4>🚀 Análisis de Retención en Ecommerce LATAM</h4>
+            <div class="case-step"><div class="st">1 · El problema de negocio</div><p>Identificar por qué el 25% de los carritos activos se cancelaba en el paso de la pasarela de pago en Argentina.</p></div>
+            <div class="case-step"><div class="st">2 · Qué hice (el proceso)</div><p>Análisis exploratorio de datos transaccionales, unión de tablas relacionales y aislamiento de errores de la API de pago.</p></div>
+            <div class="case-step"><div class="st">3 · Herramientas</div><div class="chips"><span class="chip">SQL · PostgreSQL</span><span class="chip">Tableau</span><span class="chip">Excel avanzado</span></div></div>
+            <div class="case-result"><b>Resultado:</b> localicé un error de timeout en tarjetas prepagas locales. Mi dashboard guió al equipo de desarrollo y <b>redujo el abandono de carritos un 12%.</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="tabpane" id="pf-1">
+        <div class="notion">
+          <div class="notion-bar">Notion · Casos de Estudio / Aseguramiento de Calidad</div>
+          <div class="notion-body">
+            <h4>🔍 Plan de Pruebas para App de Delivery</h4>
+            <div class="case-step"><div class="st">1 · El problema de negocio</div><p>La app dejaba pasar pedidos duplicados cuando la conexión era inestable, generando reembolsos y reseñas negativas.</p></div>
+            <div class="case-step"><div class="st">2 · Qué hice (el proceso)</div><p>Diseñé casos de prueba funcionales y de borde, documenté bugs reproducibles con pasos y evidencias, y propuse una checklist de regresión.</p></div>
+            <div class="case-step"><div class="st">3 · Herramientas</div><div class="chips"><span class="chip">TestRail / Sheets</span><span class="chip">Postman (API)</span><span class="chip">Jira</span></div></div>
+            <div class="case-result"><b>Resultado:</b> documenté 18 bugs priorizados; los 3 críticos se corrigieron antes del release y <b>los pedidos duplicados cayeron a casi cero.</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="tabpane" id="pf-2">
+        <div class="notion">
+          <div class="notion-bar">Notion · Casos de Estudio / Diseño UX·UI</div>
+          <div class="notion-body">
+            <h4>🎨 Rediseño del Checkout de una Tienda Local</h4>
+            <div class="case-step"><div class="st">1 · El problema de negocio</div><p>El formulario de compra tenía 9 campos y muchos usuarios lo abandonaban a la mitad en el móvil.</p></div>
+            <div class="case-step"><div class="st">2 · Qué hice (el proceso)</div><p>Investigación con 5 usuarios, mapa de fricción, wireframes y un prototipo navegable reduciendo el flujo a 4 campos esenciales.</p></div>
+            <div class="case-step"><div class="st">3 · Herramientas</div><div class="chips"><span class="chip">Figma</span><span class="chip">Maze (test)</span><span class="chip">Notion (research)</span></div></div>
+            <div class="case-result"><b>Resultado:</b> en la prueba con prototipo, la tasa de finalización simulada <b>subió del 58% al 84%.</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        // 4. Portfolio Showcase Rendering Engine
-        function renderPortfolioMockup(index) {
-            selectedPortfolioIndex = index;
-            const dataItem = portfolioData[index];
+<div class="section-rule reveal">«No es una repetición aburrida de tu currículum. Es tu voz proyectada.»</div>
 
-            // Update selectors
-            for (let i = 0; i < 3; i++) {
-                const btn = document.getElementById(`btn-port-${i}`);
-                if (btn) {
-                    if (i === index) {
-                        btn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all bg-indigo-600 text-white shadow-sm";
-                    } else {
-                        btn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all bg-white text-slate-600 border border-slate-250 hover:bg-slate-50";
-                    }
-                }
-            }
+<!-- PILLAR 4 -->
+<section id="pilar-4">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">Pilar 04 · Carta de presentación</span>
+      <h2>La carta que sí leen.</h2>
+      <p>Tu mayor herramienta de persuasión si vienes de otro sector o buscas tu primer empleo remoto formal. No repite el CV: explica de qué manera tus habilidades interpersonales y de negocio calzan con los desafíos de la empresa que contrata.</p>
+    </div>
 
-            // Bind values cleanly
-            document.getElementById('notion-p-field').innerText = dataItem.field;
-            document.getElementById('notion-p-title').innerText = `🚀 ${dataItem.title}`;
-            document.getElementById('notion-p-problem').innerText = dataItem.problem;
-            document.getElementById('notion-p-what').innerText = dataItem.whatIDid;
-            document.getElementById('notion-p-result').innerHTML = `<strong>${dataItem.result}</strong>`;
+    <div class="reframe reveal" style="margin-top:0">
+      <div class="rf-row" style="grid-template-columns:1fr"><div class="rf-new"><small>1 · El gancho de investigación</small><b style="font-weight:600;font-size:15px;color:var(--ink-soft)">Olvida «A quien corresponda». Empieza demostrando que investigaste a la empresa: un premio reciente, su misión o un producto concreto.</b></div></div>
+      <div class="rf-row" style="grid-template-columns:1fr"><div class="rf-new"><small>2 · La conexión de valor</small><b style="font-weight:600;font-size:15px;color:var(--ink-soft)">Muestra cómo tus habilidades transferibles (administración, docencia, ventas) encajan con los desafíos prácticos del puesto remoto.</b></div></div>
+      <div class="rf-row" style="grid-template-columns:1fr"><div class="rf-new"><small>3 · El CTA de confianza</small><b style="font-weight:600;font-size:15px;color:var(--ink-soft)">Expresa entusiasmo genuino, invita a una llamada ágil de 15 minutos y agradece su tiempo con cordialidad.</b></div></div>
+    </div>
 
-            // Clear tools badges and render list
-            const toolsBox = document.getElementById('notion-p-tools');
-            toolsBox.innerHTML = '';
-            dataItem.tools.forEach(tool => {
-                const badge = document.createElement('span');
-                badge.className = "bg-white border border-slate-250 px-2.5 py-0.5 rounded-md text-[11px] font-mono text-slate-600";
-                badge.innerText = tool;
-                toolsBox.appendChild(badge);
-            });
-        }
+    <div class="card reveal" style="margin-top:30px">
+      <span class="tool-tag">⚡ Herramienta interactiva</span>
+      <h3 style="font-size:26px;margin-bottom:6px">Generador de carta de presentación</h3>
+      <p style="color:var(--ink-soft);margin-bottom:18px">Configura tu perfil previo y tu cargo destino para generar un borrador estructurado con tu valor transferible.</p>
+      <div class="gen-grid">
+        <div class="gen-form">
+          <div class="field">
+            <label>Mi background anterior</label>
+            <select id="bg" onchange="genLetter()">
+              <option value="ventas">Ventas y Atención al Cliente</option>
+              <option value="admin">Administración, Recepción u Oficina</option>
+              <option value="docencia">Profesor, Educación o Capacitación</option>
+              <option value="logistica">Logística, Inventarios o Coordinación</option>
+              <option value="otro">Otro o Primer empleo formal</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Mi rol objetivo remoto</label>
+            <select id="role" onchange="genLetter()">
+              <option value="data">Analista de Datos (Junior Data Analyst)</option>
+              <option value="qa">Aseguramiento de Calidad (QA)</option>
+              <option value="dev">Desarrollador Web (Frontend/Fullstack)</option>
+              <option value="support">Soporte de Operaciones / Virtual Assistant</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Empresa destino</label>
+            <input id="company" type="text" placeholder="Ej.: Mercado Libre" oninput="genLetter()">
+          </div>
+          <div class="field">
+            <label>Tu nombre</label>
+            <input id="myname" type="text" placeholder="Ej.: Juan Pérez" oninput="genLetter()">
+          </div>
+        </div>
+        <div class="gen-out">
+          <div class="ghead">
+            <span class="mono">BORRADOR_EDITABLE.txt</span>
+            <button class="copybtn" id="copybtn" onclick="copyLetter()">⧉ Copiar</button>
+          </div>
+          <div id="letterText"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        // 5. Dynamic Cover Letter Compiler and Pitch Builder
-        function compileCoverLetter() {
-            const formBackground = document.getElementById('form-background').value;
-            const formRole = document.getElementById('form-role').value;
-            const formCompany = document.getElementById('form-company').value || 'GlobalTech';
+<!-- CHECKLIST -->
+<section id="checklist">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">Evaluación final</span>
+      <h2>Checklist: los 5 filtros críticos.</h2>
+      <p>Antes de hacer clic en «enviar» en cualquier portal remoto, marca con honestidad cada punto. Evita el descarte automático del ATS y asegura que tu perfil sea un imán de respuestas reales.</p>
+    </div>
 
-            let opening = `Estimado/a Líder de Contratación en ${formCompany},\n\nSigo de cerca el impacto que tiene ${formCompany} en el desarrollo de soluciones ágiles y descentralizadas para la región. Me motivó especialmente ver cómo su equipo prioriza la calidad técnica y el diseño centrado en el usuario, un pilar fundamental hoy en día. Al ver la posición de ${formRole}, no pude evitar postularme de inmediato para aportar valor desde mi trayectoria única.`;
+    <div class="progress-ring reveal">PROGRESO DEL CHECKLIST · <b><span id="checkcount">0</span>/5</b> completados</div>
 
-            let body = '';
-            if (formBackground === 'Ventas / Retail') {
-                body = `Vengo de una sólida trayectoria en Ventas y de cara al cliente, lo que me ha permitido consolidar una mentalidad enfocada 100% en entender problemas reales y resolverlos bajo presión. Esta experiencia me enseñó a interactuar con stakeholders clave y analizar patrones de comportamiento de usuarios. He fusionado este bagaje con mi capacitación práctica en ${formRole}, donde he desarrollado proyectos reales, aplicando un flujo de trabajo estructurado y toma de decisiones basadas en evidencia.`;
-            } else if (formBackground === 'Administración / Finanzas') {
-                body = `Mi experiencia previa se ha centrado en administración y operaciones comerciales, donde la precisión del dato, la automatización básica y el análisis presupuestario diariamente eran mi estándar de calidad. En esta transición hacia ${formRole}, aplico esa misma rigurosidad para asegurar flujos de trabajo limpios, estructurar documentación técnica impecable y optimizar procesos. Esto me permite no solo entender los requerimientos técnicos sino también su correlato directo con la eficiencia del negocio.`;
-            } else if (formBackground === 'Educación / Docencia') {
-                body = `Mi experiencia previa como educador/a me ha dotado de habilidades de comunicación excepcionales, resiliencia y el hábito arraigado de documentar procesos de forma sumamente sencilla y clara. Traducir la complejidad a lenguaje accesible es una de mis mayores fortalezas. He acoplado estas habilidades pedagógicas con mi formación práctica en el rol de ${formRole}, permitiéndome actuar como un puente clave entre equipos técnicos y de negocio, acelerando integraciones de alto valor.`;
-            } else if (formBackground === 'Logística / Operaciones') {
-                body = `He desarrollado mi carrera coordinando operaciones logísticas, donde la tolerancia al fallo es cero y cada minuto ahorrado representa valor inmediato. Al trasladar ese foco estratégico hacia ${formRole}, aporto una enorme capacidad de planificación, análisis predictivo de cuellos de botella y resolución estructurada de problemas en producción. Mi portafolio de evidencias demuestra exactamente cómo puedo tangibilizar procesos complejos en soluciones ágiles.`;
-            } else {
-                body = `Aunque mi formación inicial es de una disciplina tradicional, mi gran capacidad de adaptación y aprendizaje acelerado me han llevado a dominar de manera sumamente rápida y práctica el rol de ${formRole}. Al carecer de vicios del sector, abordo los problemas de manera fresca e ingeniosa. Traigo conmigo una profunda ética de trabajo autónomo, disciplina técnica y la firme convicción de que los mejores resultados se consiguen a través de la experimentación controlada y el detalle.`;
-            }
+    <div class="checkwrap reveal">
+      <div class="check" onclick="toggleCheck(this)"><div class="box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4>Elegibilidad ATS</h4><p>Mi CV está en .pdf o .docx, sin columnas múltiples, tablas cruzadas, fotos ni logos gráficos.</p></div></div>
+      <div class="check" onclick="toggleCheck(this)"><div class="box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4>Fórmula de resultados</h4><p>Cada viñeta sigue: Acción + Logro cuantificable + Herramientas técnicas.</p></div></div>
+      <div class="check" onclick="toggleCheck(this)"><div class="box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4>LinkedIn imán</h4><p>Mi titular describe rol objetivo + tecnologías clave, sin etiquetas de desempleo.</p></div></div>
+      <div class="check" onclick="toggleCheck(this)"><div class="box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4>Portafolio MVP activo</h4><p>Tengo ≥1 proyecto documentado (problema, proceso, resultado) con enlaces funcionales.</p></div></div>
+      <div class="check" onclick="toggleCheck(this)" style="grid-column:1/-1"><div class="box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4>Personalización absoluta</h4><p>Cada postulación incluye una adaptación del perfil del CV y una carta breve basada en investigar a esa empresa.</p></div></div>
+    </div>
 
-            let secondaryBody = '';
-            if (formRole === 'Analista de Datos Junior') {
-                secondaryBody = 'En mis proyectos de análisis prácticos, he trabajado extrayendo bases de datos complejas mediante SQL, limpiando millones de registros vacíos y estructurando reportes visuales potentes que revelan tendencias de retención y aumentan la eficiencia del negocio en tiempo récord.';
-            } else if (formRole === 'QA Tester Manual o Automatizado') {
-                secondaryBody = 'He diseñado estrategias de testeo rigurosas, simulando flujos conflictivos de usuario final para reducir el costo técnico del error antes de que impacte en producción, automatizando regresiones repetitivas con alta fiabilidad.';
-            } else if (formRole === 'Desarrollador Frontend Junior') {
-                secondaryBody = 'Me enfoco en el desarrollo de interfaces fluidas, responsivas y altamente legibles, asegurando componentes modulares libres de dependencias superfluas y reduciendo la tasa de rebote gracias a tiempos optimizados de carga.';
-            } else {
-                secondaryBody = 'Me dedico a mitigar la fricción operativa de equipos remotos mediante el soporte intensivo de bases de datos, gestión de flujos ágiles y el mantenimiento impecable de portales de información internos.';
-            }
+    <div class="done-card reveal" id="donecard">
+      <h3 id="doneTitle">Completa los 5 filtros para desbloquear tu lanzamiento 🔒</h3>
+      <p id="doneText">Marca cada punto con honestidad. Cuando los cinco estén en verde, sabrás que tu perfil está listo para postular con confianza.</p>
+    </div>
 
-            const closing = `Valoro enormemente el reto de la resiliencia y la asertividad y me encantaría tener la oportunidad de conversar durante 15 minutos acerca de cómo estas habilidades transferibles pueden integrarse armónicamente para sumar valor desde el primer día en su equipo.\n\nAgradeciendo de antemano el tiempo prestado para revisar mi postulación, quedo a su entera disposición.\n\nAtentamente,\n[Tu Nombre completo]\n[Tu Enlace al Portafolio en Notion]\n[Tu LinkedIn]`;
+    <h3 style="font-size:24px;margin:42px 0 4px" class="reveal">Herramientas gratuitas de escaneo recomendadas</h3>
+    <div class="toolgrid reveal">
+      <a class="toollink" href="https://www.jobscan.co/" target="_blank" rel="noopener"><b>Jobscan <span class="arr">↗</span></b><p>Compara tu CV en texto plano contra una oferta exacta y calcula tu coincidencia ATS.</p></a>
+      <a class="toollink" href="https://resumake.io/" target="_blank" rel="noopener"><b>Resumake <span class="arr">↗</span></b><p>Crea currículums en texto plano compatibles con ATS y descárgalos en PDF limpio.</p></a>
+      <a class="toollink" href="https://www.resumeworded.com/" target="_blank" rel="noopener"><b>Resume Worded <span class="arr">↗</span></b><p>Auditoría con IA de la estructura, redacción y palabras clave de tu hoja de vida.</p></a>
+    </div>
+  </div>
+</section>
 
-            const textOutput = `${opening}\n\n${body} ${secondaryBody}\n\n${closing}`;
-            document.getElementById('cover-letter-textarea').value = textOutput;
-        }
+<footer>
+  <div class="wrap">
+    <div class="ftop">
+      <div style="display:flex;gap:16px;align-items:center">
+        <img src="logo.png" data-fallback="https://yt3.googleusercontent.com/Kuyu6tqAseg1Q1wWJmyk14Xr2D1tl4XECCwGvuhvjhet4BLJS6T6Il3wxuSlKC0X6KhClV3kjA=s240-c-k-c0x00ffffff-no-rj" alt="De Grano En Grano" onerror="if(this.dataset.fallback&&this.src.indexOf('logo.png')>-1){this.src=this.dataset.fallback}else{this.style.display='none'}" style="width:60px;height:60px;border-radius:50%;object-fit:cover;border:2px solid var(--lime);flex:0 0 auto">
+        <div>
+          <h3>De Grano En Grano<span class="dot">.</span></h3>
+          <p>Kit de Lanzamiento Remoto · construido con paciencia, educación y estrategia. De grano en grano.</p>
+        </div>
+      </div>
+      <div class="share">
+        <button onclick="window.open('https://www.youtube.com/@DeGranoEnGrano','_blank')">▶ Ir al canal</button>
+        <button onclick="shareGuide()">🔗 Compartir guía</button>
+        <button onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Volver al inicio</button>
+      </div>
+    </div>
+    <div class="fmeta">
+      <span>© DE GRANO EN GRANO · VERSIÓN 2.0</span>
+      <span>CONTACTO@DEGRANOENGRANO.COM</span>
+    </div>
+  </div>
+</footer>
 
-        // Action trigger copying cover letter
-        function copyGeneratedLetter() {
-            const textContent = document.getElementById('cover-letter-textarea').value;
-            const btnText = document.getElementById('copy-letter-btn-text');
-            const iconPlaceholder = document.getElementById('copy-letter-icon-placeholder');
-            
-            navigator.clipboard.writeText(textContent).then(() => {
-                btnText.innerText = 'Copiada!';
-                iconPlaceholder.innerHTML = '<i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>';
-                lucide.createIcons();
+<div class="toast" id="toast">✓ Enlace copiado</div>
 
-                setTimeout(() => {
-                    btnText.innerText = 'Copiar Borrador';
-                    iconPlaceholder.innerHTML = '<i data-lucide="copy" class="w-3.5 h-3.5 text-slate-400"></i>';
-                    lucide.createIcons();
-                }, 2000);
-            });
-        }
+<script>
+/* ---------- progress bar + nav hide ---------- */
+const pb=document.getElementById('progressbar');
+const nav=document.getElementById('nav');
+let lastY=0;
+function onScroll(){
+  const h=document.documentElement;
+  const sc=h.scrollTop/(h.scrollHeight-h.clientHeight);
+  pb.style.width=(sc*100)+'%';
+  const y=h.scrollTop;
+  if(y>lastY&&y>500){nav.classList.add('hidden')}else{nav.classList.remove('hidden')}
+  lastY=y;
+  spy();
+}
+window.addEventListener('scroll',onScroll,{passive:true});
 
-        // 6. Interactive Checklist States Engine
-        function toggleCheckItem(id) {
-            checkedItems[id] = !checkedItems[id];
-            
-            const card = document.getElementById(`check-card-${id}`);
-            const tickBox = document.getElementById(`check-tick-${id}`);
-            const textDesc = document.getElementById(`check-desc-${id}`);
+/* ---------- scroll spy ---------- */
+const secs=['pilar-1','pilar-2','pilar-3','pilar-4','checklist'];
+const links=[...document.querySelectorAll('.navlinks a[href^="#pilar"],.navlinks a[href="#checklist"]')];
+function spy(){
+  let cur='';
+  secs.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<160)cur=id});
+  links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+}
 
-            if (checkedItems[id]) {
-                card.className = "p-4 rounded-xl border transition-all cursor-pointer flex items-start gap-3 bg-emerald-50 border-emerald-250 text-emerald-950";
-                tickBox.className = "bg-emerald-600 border-2 border-emerald-600 text-white w-4.5 h-4.5 rounded-md flex items-center justify-center p-0.5";
-                tickBox.querySelector('i').classList.remove('hidden');
-                textDesc.className = "text-xs mt-0.5 leading-relaxed text-emerald-800";
-            } else {
-                card.className = "p-4 rounded-xl border transition-all cursor-pointer flex items-start gap-3 bg-white border-slate-200 hover:border-indigo-300 text-slate-800";
-                tickBox.className = "border-2 border-slate-300 w-4.5 h-4.5 rounded-md bg-white flex items-center justify-center p-0.5";
-                tickBox.querySelector('i').classList.add('hidden');
-                textDesc.className = "text-xs mt-0.5 leading-relaxed text-slate-500";
-            }
+/* ---------- mobile nav ---------- */
+const nl=document.getElementById('navlinks');
+document.getElementById('navtoggle').onclick=()=>nl.classList.toggle('open');
+nl.querySelectorAll('a').forEach(a=>a.onclick=()=>nl.classList.remove('open'));
 
-            updateProgressState();
-        }
+/* ---------- reveal on scroll ---------- */
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(Math.min(i%4,3)*0.06)+'s';io.observe(el)});
 
-        // Checklist Updates
-        function updateProgressState() {
-            const count = Object.values(checkedItems).filter(Boolean).length;
-            const percent = Math.round((count / 5) * 100);
+/* ---------- ATS simulator ---------- */
+function setCV(v){
+  document.querySelectorAll('.ats-toggle button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));
+  document.getElementById('pane-bad').classList.toggle('show',v==='bad');
+  document.getElementById('pane-good').classList.toggle('show',v==='good');
+}
+const diags={
+  photo:['FOTO RETRATO','Las imágenes no contienen texto seleccionable. El ATS no extrae nada de una foto y muchos sistemas la marcan como "contenido ilegible".'],
+  contact:['DATOS EN IMAGEN/ENCABEZADO','Si tu correo o teléfono están dentro de una imagen o en el "header" del documento, muchos ATS no los leen. Ponlos como texto plano en el cuerpo.'],
+  col:['COLUMNAS MÚLTIPLES','El robot lee de izquierda a derecha y de arriba abajo. Las columnas mezclan el orden y tu experiencia llega desordenada o incompleta.'],
+  graph:['GRÁFICO DE HABILIDADES','Una barra al 80% no le dice nada al robot: no hay palabra clave que indexar. Escribe "Python", "SQL", "Tableau" como texto.']
+};
+function diag(k){
+  const d=diags[k];
+  const box=document.getElementById('diagbox');
+  box.innerHTML='<span class="mono">DIAGNÓSTICO · '+d[0]+'</span>'+d[1];
+  box.style.transform='scale(1.015)';setTimeout(()=>box.style.transform='',150);
+}
 
-            // Update DOM text representations
-            document.getElementById('tracker-percent-text').innerText = `${percent}%`;
-            document.getElementById('tracker-progress-bar').style.width = `${percent}%`;
+/* ---------- LinkedIn tabs ---------- */
+function liTab(i){
+  document.querySelectorAll('#li-tabs button').forEach((b,j)=>b.classList.toggle('on',i===j));
+  for(let j=0;j<4;j++)document.getElementById('li-'+j).classList.toggle('show',i===j);
+}
+function pfTab(i){
+  document.querySelectorAll('#pf-tabs button').forEach((b,j)=>b.classList.toggle('on',i===j));
+  for(let j=0;j<3;j++)document.getElementById('pf-'+j).classList.toggle('show',i===j);
+}
 
-            // Show certification if completed
-            const successBanner = document.getElementById('checklist-success-banner');
-            if (percent === 100) {
-                successBanner.classList.remove('hidden');
-            } else {
-                successBanner.classList.add('hidden');
-            }
-        }
+/* ---------- cover letter generator ---------- */
+const bgData={
+  ventas:{skill:'la atención al cliente y las ventas',transfer:'la escucha activa, la negociación y la lectura rápida de las necesidades reales de una persona'},
+  admin:{skill:'la administración y la gestión de oficina',transfer:'la organización meticulosa, la documentación de procesos y el manejo simultáneo de múltiples prioridades sin que nada se caiga'},
+  docencia:{skill:'la docencia y la formación',transfer:'la capacidad de explicar lo complejo de forma simple, documentar procedimientos y acompañar a otras personas en su curva de aprendizaje'},
+  logistica:{skill:'la logística y la coordinación de inventarios',transfer:'el pensamiento sistemático, la optimización de recursos y la detección temprana de cuellos de botella'},
+  otro:{skill:'mi formación práctica y mis proyectos personales',transfer:'la disciplina autodidacta, la curiosidad estructurada y el compromiso de aprender rápido lo que el rol exija'}
+};
+const roleData={
+  data:{name:'Analista de Datos',need:'convertir datos dispersos en decisiones claras de negocio',tools:'SQL, Python y Tableau'},
+  qa:{name:'Aseguramiento de Calidad (QA)',need:'proteger la experiencia del usuario detectando errores antes que el cliente',tools:'casos de prueba, documentación de bugs y herramientas como Postman y Jira'},
+  dev:{name:'Desarrollador Web',need:'construir interfaces funcionales y mantenibles',tools:'HTML, CSS, JavaScript y control de versiones con Git'},
+  support:{name:'Soporte de Operaciones / Asistente Virtual',need:'mantener las operaciones fluidas y a los clientes acompañados',tools:'gestión de tareas, comunicación asíncrona y herramientas como Notion y Slack'}
+};
+function genLetter(){
+  const bg=bgData[document.getElementById('bg').value];
+  const role=roleData[document.getElementById('role').value];
+  const companyRaw=document.getElementById('company').value.trim();
+  const nameRaw=document.getElementById('myname').value.trim();
+  const company=companyRaw||'[Empresa]';
+  const name=nameRaw||'[Tu nombre]';
+  const ph=(t,filled)=>filled?t:'<span class="ph">'+t+'</span>';
+  const txt=
+`Estimado equipo de ${ph(company,companyRaw)}:
 
-        function clearChecklist() {
-            checkedItems = { 1: false, 2: false, 3: false, 4: false, 5: false };
-            for (let i = 1; i <= 5; i++) {
-                const card = document.getElementById(`check-card-${i}`);
-                const tickBox = document.getElementById(`check-tick-${i}`);
-                const textDesc = document.getElementById(`check-desc-${i}`);
+He seguido de cerca el trabajo de ${ph(company,companyRaw)} y me interesa especialmente [menciona aquí un proyecto, producto, premio o valor concreto de la empresa que hayas investigado]. Por eso quiero postularme como ${role.name}.
 
-                card.className = "p-4 rounded-xl border transition-all cursor-pointer flex items-start gap-3 bg-white border-slate-200 hover:border-indigo-300 text-slate-800";
-                tickBox.className = "border-2 border-slate-300 w-4.5 h-4.5 rounded-md bg-white flex items-center justify-center p-0.5";
-                tickBox.querySelector('i').classList.add('hidden');
-                textDesc.className = "text-xs mt-0.5 leading-relaxed text-slate-500";
-            }
-            updateProgressState();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+Mi trayectoria inició en ${bg.skill}, una etapa que me dejó una habilidad difícil de enseñar: ${bg.transfer}. Decidí orientar esas fortalezas hacia ${role.name.toLowerCase()}, donde he desarrollado proyectos prácticos usando ${role.tools}. Sé que el reto del rol es ${role.need}, y justamente ahí es donde mi perfil aporta valor: combino criterio humano con ejecución técnica.
 
-        // Global sharing mechanism simulation
-        function copyRouteLink() {
-            const shareBtnText = document.getElementById('share-btn-text');
-            const shareIconPlaceholder = document.getElementById('share-icon-placeholder');
+Me encantaría proponerte ideas concretas en una llamada ágil de 15 minutos. Puedes ver mis proyectos documentados en mi portafolio (link) y quedo atento/a a tu disponibilidad. Gracias por tu tiempo.
 
-            navigator.clipboard.writeText(window.location.href).then(() => {
-                shareBtnText.innerText = 'Copiado!';
-                shareIconPlaceholder.innerHTML = '<i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>';
-                lucide.createIcons();
+Un cordial saludo,
+${ph(name,nameRaw)}`;
+  document.getElementById('letterText').innerHTML=txt;
+}
+function copyLetter(){
+  const tmp=document.getElementById('letterText').innerText;
+  navigator.clipboard.writeText(tmp).then(()=>{
+    const b=document.getElementById('copybtn');
+    b.textContent='✓ Copiado';b.classList.add('done');
+    setTimeout(()=>{b.innerHTML='⧉ Copiar';b.classList.remove('done')},1800);
+  });
+}
+genLetter();
 
-                setTimeout(() => {
-                    shareBtnText.innerText = 'Compartir Guía';
-                    shareIconPlaceholder.innerHTML = '<i data-lucide="copy" class="w-3.5 h-3.5 text-slate-300"></i>';
-                    lucide.createIcons();
-                }, 2000);
-            }).catch(err => {
-                console.log("No se pudo copiar el enlace", err);
-            });
-        }
-    </script>
+/* ---------- checklist ---------- */
+function toggleCheck(el){
+  el.classList.toggle('on');
+  const total=document.querySelectorAll('.check.on').length;
+  document.getElementById('checkcount').textContent=total;
+  const dc=document.getElementById('donecard');
+  if(total===5){
+    dc.classList.add('unlocked');
+    document.getElementById('doneTitle').textContent='¡Tu hoja de ruta de empleabilidad está lista! 🚀';
+    document.getElementById('doneText').textContent='Tu CV es anti-robots, tu LinkedIn proyecta autoridad, tu portafolio MVP demuestra evidencias reales y tus cartas explican tu valor desde la empatía. Es hora de enviar postulaciones inteligentes con absoluta confianza.';
+  }else{
+    dc.classList.remove('unlocked');
+    document.getElementById('doneTitle').textContent='Completa los 5 filtros para desbloquear tu lanzamiento 🔒';
+    document.getElementById('doneText').textContent='Marca cada punto con honestidad. Cuando los cinco estén en verde, sabrás que tu perfil está listo para postular con confianza.';
+  }
+}
+
+/* ---------- share ---------- */
+function shareGuide(){
+  const url=window.location.href;
+  if(navigator.share){navigator.share({title:'Kit de Lanzamiento Remoto',url}).catch(()=>{})}
+  else{navigator.clipboard.writeText(url).then(showToast)}
+}
+function showToast(){const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
+
+spy();
+</script>
 </body>
 </html>
